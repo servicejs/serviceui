@@ -206,7 +206,7 @@ const packageJson = task(
           return objectWithKeyAndValue(key, value);
         // Include private, if set to true
         case "private":
-          return value ? objectWithKeyAndValue(key, true) : false;
+          return value ? objectWithKeyAndValue(key, false) : false;
         // Modify the entries of main, module, browser and types to replace the change in directory structure
         case "main":
         case "module":
