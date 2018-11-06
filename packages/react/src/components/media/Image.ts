@@ -17,17 +17,19 @@ export interface ImageProps extends CssProps, PropsType<"img"> {}
 export const Image = IdMonad.of((props: ImageProps) =>
   React.createElement(Box, { as: "img", ...props }),
 )
-  .map(withProps<ImageProps, ImageProps>(({css, ...props}) => ({
-    css: [
-      {
-        display: "block",
-        maxWidth: "100%",
-        maxHeight: "100%",
-        width: "auto",
-        height: "auto"
-      },
-      css
-    ]
-  }))));
+  .map(
+    withProps<ImageProps, ImageProps>(({ css, ...props }) => ({
+      css: [
+        {
+          display: "block",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "auto",
+        },
+        css,
+      ],
+    })),
+  )
   .map(setDisplayName("Image"))
   .flatten() as RCT<ImageProps>;
