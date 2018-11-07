@@ -86,8 +86,13 @@ export class DefaultTheme<
     fillScreenReset();
     fillScreenFlexReset();
     injectGlobal({
+      html: {
+        fontSize: this.props.baseFontSize,
+      },
+
       body: {
         fontFamily: this.props.fonts.sans.family,
+        lineHeight: this.props.baseLineHeight,
       },
     });
   }

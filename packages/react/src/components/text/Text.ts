@@ -4,28 +4,19 @@
 
 /** Imports */
 
-import withProps from "recompose/withProps";
-import { PropsType } from "../../util";
-import { AsProps } from "../base/As";
-import { Box, BoxProps, CssProps } from "../base/Box";
+import setDisplayName from "recompose/setDisplayName";
+import { asComponent, IdMonad, PropsType, RCT, withStyle } from "../../util";
+import { Box, CoreProps } from "../base/Box";
 
 /** Declarations */
 
-export interface TextProps extends AsProps, CssProps, PropsType<"span"> {}
+export interface TextProps extends CoreProps, PropsType<"span"> {}
 
 /**
- * Text component
+ * Text (`<span>`)
  */
-export const Text = withProps<BoxProps, TextProps>(
-  ({ css: cssProp, as: asProp, ...props }) =>
-    ({
-      as: asProp || "span",
-      css: [
-        {
-          display: "inline",
-        },
-        cssProp,
-      ],
-      ...props,
-    } as BoxProps),
-)(Box);
+export const Text = IdMonad.of(Box)
+  .map(asComponent("span"))
+  .map(withStyle({ display: "inline" }))
+  .map(setDisplayName("Text"))
+  .flatten() as RCT<TextProps>;

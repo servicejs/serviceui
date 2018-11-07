@@ -19,7 +19,9 @@ export interface CssProps {
   css?: Interpolation;
 }
 
-export interface BoxProps extends AsProps, CssProps, PropsType<"div"> {}
+export interface CoreProps extends AsProps, CssProps {}
+
+export interface BoxProps extends CoreProps, PropsType<"div"> {}
 
 export const Box: React.SFC<BoxProps> = setDisplayName("Box")(
   ({ as: asProp, css: cssProp, className, children, ...props }: BoxProps) => {

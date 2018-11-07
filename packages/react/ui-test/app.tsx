@@ -10,7 +10,31 @@ import { withTheme } from "emotion-theming";
 import * as React from "react";
 import styled, { css } from "react-emotion";
 
-import { Box, Color, Em, em, rem, Strong, Text, ThemedProps } from "../src";
+import {
+  BlockQuote,
+  Box,
+  Code,
+  CodeBlock,
+  Color,
+  em,
+  Em,
+  Emphasis,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Heading,
+  Paragraph,
+  PreFormattedText,
+  Quote,
+  rem,
+  Strong,
+  StrongEmphasis,
+  Text,
+  ThemedProps,
+} from "../src";
 import { ExpandingFlex, Flex, FlexColumn, FlexRow } from "../src";
 // import { objectFlatMap, objectMap } from "../src/util/ObjectFunctor";
 
@@ -36,7 +60,111 @@ class App extends React.Component<ThemedProps> {
           }}
         >
           <Box css={{ display: "grid", gridGap: this.props.theme!.blh(1) }}>
-            <p>XXX</p>
+            <H1 css={{ fontSize: rem(2), fontWeight: 700 }}>Components</H1>
+            <H2 css={{ fontSize: rem(1.5), fontWeight: 700 }}>Base</H2>
+
+            {/* Box */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>Box</H3>
+
+            <Box
+              css={{
+                ...this.props.theme!.colors.red.background(),
+                height: this.props.theme!.blh(3),
+                width: "100%",
+              }}
+            />
+
+            {/* Typographic components */}
+
+            <H2 css={{ fontSize: rem(1.5), fontWeight: 700 }}>
+              Typographic components
+            </H2>
+
+            {/* Text */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>Text</H3>
+
+            <Text>Some text</Text>
+
+            {/* Paragraph */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>Paragraph</H3>
+
+            <Paragraph>Some text in a paragraph</Paragraph>
+
+            {/* Heading */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>Heading</H3>
+
+            <Heading>
+              A heading without level will render as <Code>p</Code>
+            </Heading>
+            <Heading level={1}>
+              A heading with an integer level <Code>n</Code> between 1 and 6
+              will render as <Code>h1</Code> to <Code>h6</Code> respectively,
+              otherwise as a <Code>p</Code>. Of course, you can override this
+              behaviour using `as`.
+            </Heading>
+            <H1>
+              You can also use the shorthands <Code>H1</Code> to <Code>H6</Code>{" "}
+              for that.
+            </H1>
+            <H1>Heading 1</H1>
+            <H2>Heading 2</H2>
+            <H3>Heading 3</H3>
+            <H4>Heading 4</H4>
+            <H5>Heading 5</H5>
+            <H6>Heading 6</H6>
+
+            {/* Inline Elements */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>
+              Inline elements
+            </H3>
+
+            <Paragraph>
+              <Emphasis>
+                {`<Emphasis>`} or {`<Em>`}
+              </Emphasis>
+            </Paragraph>
+
+            <Paragraph>
+              <StrongEmphasis>
+                {`<StrongEmphasis>`} or {`<Strong>`}
+              </StrongEmphasis>
+            </Paragraph>
+
+            <Paragraph>
+              <Quote>
+                {`<Quote>`} or {`<Q>`}
+              </Quote>
+            </Paragraph>
+
+            <Paragraph>
+              <Code>{`<Code>`}</Code>
+            </Paragraph>
+
+            {/* BlockQuote */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>BlockQuote</H3>
+
+            <BlockQuote>A blockquote</BlockQuote>
+
+            {/* CodeBlock */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>CodeBlock</H3>
+
+            <CodeBlock>A CodeBlock</CodeBlock>
+
+            {/* PreFormattedText */}
+
+            <H3 css={{ fontSize: rem(1.25), fontWeight: 700 }}>
+              PreFormattedText
+            </H3>
+
+            <PreFormattedText>A block of pre-formatted text</PreFormattedText>
+
             {Object.keys(this.props.theme!.colors).map((key, index) => (
               <Box
                 key={index}
