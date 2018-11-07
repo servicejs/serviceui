@@ -68,6 +68,10 @@ export class Theme<
   }
 
   public blh = (n: number) => rem(n * this.props.baseLineHeight);
+
+  public componentStyles = (componentName: string, props: any): any => {
+    return {};
+  }
 }
 
 export interface ThemedProps<T extends Theme = Theme> {

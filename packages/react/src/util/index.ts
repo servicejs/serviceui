@@ -11,6 +11,8 @@ export * from "./Functor";
 export * from "./is";
 export * from "./Monad";
 export * from "./ObjectFunctor";
+export * from "./omitProps";
 export * from "./PropsType";
 export * from "./react-shorthands";
 export * from "./withStyle";
+export * from "./wrap";

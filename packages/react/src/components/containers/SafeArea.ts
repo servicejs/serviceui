@@ -5,8 +5,8 @@
 /** Imports */
 
 import defaultProps from "recompose/defaultProps";
+import mapProps from "recompose/mapProps";
 import setDisplayName from "recompose/setDisplayName";
-import withProps from "recompose/withProps";
 import { IdMonad, RCT } from "../../util";
 import { Box, BoxProps } from "../base/Box";
 
@@ -38,26 +38,26 @@ const combine = <T>(...values: Array<T | undefined>): T | void =>
   selectFirst((value) => value !== undefined, values);
 
 export const safeAreaMixin = (props: SafeAreaBaseProps) => ({
-  marginLeft: combine(props.l, props.x, props.all)
+  paddingLeft: combine(props.l, props.x, props.all)
     ? "env(safe-area-inset-left)"
     : undefined,
 
-  marginRight: combine(props.r, props.x, props.all)
+  paddingRight: combine(props.r, props.x, props.all)
     ? "env(safe-area-inset-right)"
     : undefined,
 
-  marginTop: combine(props.t, props.y, props.all)
+  paddingTop: combine(props.t, props.y, props.all)
     ? "env(safe-area-inset-top)"
     : undefined,
 
-  marginBottom: combine(props.b, props.y, props.all)
+  paddingBottom: combine(props.b, props.y, props.all)
     ? "env(safe-area-inset-bottom)"
     : undefined,
 });
 
 export const SafeArea = IdMonad.of(Box)
   .map(
-    withProps<BoxProps, SafeAreaProps>(
+    mapProps<BoxProps, SafeAreaProps>(
       ({ l, r, t, b, x, y, all, css, ...props }) => ({
         css: [css, safeAreaMixin({ l, r, t, b, x, y, all })],
         ...props,

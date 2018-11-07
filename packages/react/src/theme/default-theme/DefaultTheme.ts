@@ -5,7 +5,10 @@ import {
   fillScreenFlexReset,
   fillScreenReset,
   FontList,
+  MediaQuery,
+  MediaQueryCondition,
   percentage,
+  rem,
   Unit,
 } from "../../mixins";
 import { Theme, ThemeProps } from "../Theme";
@@ -77,8 +80,56 @@ export class DefaultTheme<
     },
   };
 
+  private defaultComponentStyles = {
+    Box: {},
+    Text: {},
+    Article: {},
+    Heading: {
+      display: "block",
+      fontWeight: 700,
+    },
+    H1: {
+      fontSize: rem(2),
+      lineHeight: this.blh(2),
+    },
+    H2: {
+      fontSize: rem(1.5),
+      lineHeight: this.blh(1.5),
+    },
+    H3: {
+      fontSize: rem(1.25),
+      lineHeight: this.blh(1.25),
+    },
+    H4: {
+      fontSize: rem(1.1),
+      lineHeight: this.blh(1.25),
+    },
+    H5: {
+      fontSize: rem(1.0),
+      lineHeight: this.blh(1.5),
+    },
+    H6: {
+      fontSize: rem(1.0),
+      fontWeight: 400,
+      lineHeight: this.blh(1.5),
+      textTransform: "small-caps",
+    },
+  };
+
   constructor(props: DefaultThemeProps = DefaultTheme.defaultProps) {
     super(props as DefaultThemeProps<NamedColors>);
+  }
+
+  public componentStyles = (componentName: string, props: any) => {
+    const value = (this.defaultComponentStyles as any)[componentName];
+    if (value) {
+      if (typeof value === "function") {
+        return value(props);
+      }
+      return value;
+    } else {
+      return {};
+    }
   }
 
   public injectGlobal = () => {
@@ -86,13 +137,121 @@ export class DefaultTheme<
     fillScreenReset();
     fillScreenFlexReset();
     injectGlobal({
-      html: {
-        fontSize: this.props.baseFontSize,
+      "*": {
+        overflowWrap: "inherit",
+        wordBreak: "inherit",
+        wordWrap: "inherit",
       },
 
-      body: {
+      "html": {
+        // Base
+        "&": {
+          fontSize: this.props.baseFontSize,
+        },
+        // Desktop
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("min-width", "1280px"),
+        )({
+          fontSize: `18px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("min-width", "1920px"),
+        )({
+          fontSize: `21px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("min-width", "2560px"),
+        )({
+          fontSize: `24px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("min-width", "3840px"),
+        )({
+          fontSize: `${100 / (1920 / 21)}vw`,
+        }),
+
+        // Mobile
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "portrait"),
+          MediaQueryCondition("min-width", "640px"),
+        )({
+          fontSize: `18px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "landscape"),
+          MediaQueryCondition("min-height", "640px"),
+        )({
+          fontSize: `18px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "portrait"),
+          MediaQueryCondition("min-width", "768px"),
+        )({
+          fontSize: `21px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "landscape"),
+          MediaQueryCondition("min-height", "768px"),
+        )({
+          fontSize: `21px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "portrait"),
+          MediaQueryCondition("min-width", "1024px"),
+        )({
+          fontSize: `24px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "landscape"),
+          MediaQueryCondition("min-height", "1024px"),
+        )({
+          fontSize: `24px`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "portrait"),
+          MediaQueryCondition("min-width", "1280px"),
+        )({
+          fontSize: `${100 / (1280 / 24)}vmin`,
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+          MediaQueryCondition("orientation", "landscape"),
+          MediaQueryCondition("min-height", "1280px"),
+        )({
+          fontSize: `${100 / (1280 / 24)}vmin`,
+        }),
+      },
+
+      "body": {
         fontFamily: this.props.fonts.sans.family,
         lineHeight: this.props.baseLineHeight,
+
+        overflowWrap: "break-word",
+        wordBreak: "break-word",
+        wordWrap: "break-word",
+
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "1"),
+        )({
+          // background: "#F00",
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        )({
+          // background: "#0F0",
+        }),
+        ...MediaQuery("only screen")(
+          MediaQueryCondition("-webkit-min-device-pixel-ratio", "3"),
+        )({
+          // background: "#00F",
+        }),
       },
     });
   }

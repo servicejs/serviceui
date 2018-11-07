@@ -6,10 +6,11 @@
 
 import { Interpolation } from "create-emotion";
 import { css, cx } from "emotion";
-import { ThemeProvider } from "emotion-theming";
+import { ThemeProvider, withTheme } from "emotion-theming";
 import * as React from "react";
 import setDisplayName from "recompose/setDisplayName";
-import { PropsType } from "../../util";
+import { Theme, ThemedProps } from "../../theme";
+import { IdMonad, PropsType, RCT } from "../../util";
 import { AsProps, asPropsToPolymorphicProps } from "./As";
 import { Polymorphic } from "./Polymorphic";
 
@@ -19,13 +20,21 @@ export interface CssProps {
   css?: Interpolation;
 }
 
-export interface CoreProps extends AsProps, CssProps {}
+export interface CoreProps extends AsProps, CssProps, ThemedProps {}
 
 export interface BoxProps extends CoreProps, PropsType<"div"> {}
 
-export const Box: React.SFC<BoxProps> = setDisplayName("Box")(
-  ({ as: asProp, css: cssProp, className, children, ...props }: BoxProps) => {
+export const Box: RCT<BoxProps> = IdMonad.of(
+  ({
+    as: asProp,
+    css: cssProp,
+    className,
+    theme,
+    children,
+    ...props
+  }: BoxProps) => {
     const combinedClassName = cx(
+      css(theme!.componentStyles("Box", props)),
       className,
       Array.isArray(cssProp) ? css(...cssProp) : css(cssProp),
     );
@@ -43,10 +52,14 @@ export const Box: React.SFC<BoxProps> = setDisplayName("Box")(
       ...(polymorphicProps.props || {}),
     };
 
-    return React.createElement(
-      ThemeProvider,
-      { theme: (theme: any) => ({ ...theme }) },
-      React.createElement(Polymorphic, polymorphicProps),
-    );
+    // return React.createElement(
+    //   ThemeProvider,
+    //   { theme: (theme: any) => ({ ...theme }) },
+    //   React.createElement(Polymorphic, polymorphicProps),
+    // );
+    return React.createElement(Polymorphic, polymorphicProps);
   },
-);
+)
+  .map((c) => withTheme<BoxProps, Theme>(c))
+  .map(setDisplayName("Box"))
+  .flatten() as RCT<BoxProps>;

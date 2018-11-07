@@ -5,9 +5,10 @@
 /** Imports */
 
 import { PositionProperty } from "csstype";
+import { setDisplayName } from "recompose";
 import defaultProps from "recompose/defaultProps";
 import withProps from "recompose/withProps";
-import { RCT } from "../../util";
+import { IdMonad, omitProps, RCT, withStyle } from "../../util";
 import { Box, BoxProps } from "../base/Box";
 
 /** Declarations */
@@ -20,12 +21,21 @@ export interface PositionedContainerProps
   extends BoxProps,
     PositionedContainerBaseProps {}
 
-export const PositionedContainer: RCT<PositionedContainerProps> = withProps<
-  BoxProps,
-  PositionedContainerProps
->(({ position, css, ...props }) => ({
-  css: [css, { position }],
-}))(Box);
+export const PositionedContainer = IdMonad.of(Box)
+  .map(
+    withStyle(({ position }) => ({
+      position,
+    })),
+  )
+  .map(omitProps<PositionedContainerProps, "position">("position"))
+  .map(setDisplayName("PositionedContainer"))
+  .flatten() as RCT<PositionedContainerProps>;
+
+withProps<BoxProps, PositionedContainerProps>(
+  ({ position, css, ...props }) => ({
+    css: [css, { position }],
+  }),
+)(Box);
 
 // prettier-ignore
 export const StaticPositionedContainer: RCT<PositionedContainerProps> =
