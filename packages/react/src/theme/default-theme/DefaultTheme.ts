@@ -1,4 +1,6 @@
-import { injectGlobal, Interpolation } from "emotion";
+import { injectGlobal } from "emotion";
+import { Interpolation } from "react-emotion";
+import { FlexBaseProps } from "../../components";
 import {
   cssReset,
   fillScreenFlexReset,
@@ -47,7 +49,7 @@ export class DefaultTheme<
     },
   };
 
-  private defaultComponentStyles: { [key: string]: Interpolation } = {
+  private defaultComponentStyles: { [key: string]: Interpolation<any> } = {
     Box: {
       display: "block",
     },
@@ -150,6 +152,29 @@ export class DefaultTheme<
       fontWeight: 700,
     },
     Article: {},
+
+    Flex: ({
+      child,
+      inline,
+      direction: flexDirection,
+      wrap: flexWrap,
+      justifyContent,
+      alignContent,
+      alignItems,
+      alignSelf,
+      flex,
+      order,
+    }: FlexBaseProps) => ({
+      alignContent,
+      alignItems,
+      alignSelf,
+      display: child ? undefined : inline ? "inline-flex" : "flex",
+      flex,
+      flexDirection,
+      flexWrap,
+      justifyContent,
+      order,
+    }),
   };
 
   constructor(props: DefaultThemeProps = DefaultTheme.defaultProps) {
@@ -157,7 +182,6 @@ export class DefaultTheme<
   }
 
   public componentStyles = (componentName: string, props: any) => {
-    console.log(componentName);
     const value = (this.defaultComponentStyles as any)[componentName];
     if (value) {
       if (typeof value === "function") {

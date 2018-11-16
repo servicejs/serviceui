@@ -43,6 +43,7 @@ import {
   StrongEmphasis,
   Text,
   ThemedProps,
+  WrappingFlexRow,
 } from "../src";
 
 // import { objectFlatMap, objectMap } from "../src/util/ObjectFunctor";
@@ -90,6 +91,10 @@ class App extends React.Component<ThemedProps> {
       <Article
         css={{ margin: "0 auto", width: "max-content", maxWidth: "100%" }}
       >
+        <FlexRow />
+        <FlexColumn />
+        <WrappingFlexRow />
+
         <Container>
           <H1 css={{}}>Components</H1>
           <H2 css={{}}>Base</H2>
