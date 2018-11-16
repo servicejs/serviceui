@@ -20,3 +20,8 @@ export type PropsType<T> = T extends React.ComponentType<infer P>
       ? JSX.IntrinsicElements[T]
       : never
     );
+
+export type EmotionPropsType<T> = Pick<
+  PropsType<T>,
+  Exclude<keyof PropsType<T>, "css">
+>;

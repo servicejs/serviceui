@@ -4,10 +4,7 @@
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import mapProps from "recompose/mapProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, RCT } from "../../util";
+import { augment } from "../../util";
 import { Box, BoxProps } from "../base/Box";
 
 /** Declarations */
@@ -21,6 +18,8 @@ export interface SafeAreaBaseProps {
   y?: boolean;
   all?: boolean;
 }
+
+const safeAreaBasePropsKeys = ["l", "r", "t", "b", "x", "y", "all"];
 
 export interface SafeAreaProps extends BoxProps, SafeAreaBaseProps {}
 
@@ -55,43 +54,55 @@ export const safeAreaMixin = (props: SafeAreaBaseProps) => ({
     : undefined,
 });
 
-export const SafeArea = IdMonad.of(Box)
-  .map(
-    mapProps<BoxProps, SafeAreaProps>(
-      ({ l, r, t, b, x, y, all, css, ...props }) => ({
-        css: [css, safeAreaMixin({ l, r, t, b, x, y, all })],
-        ...props,
-      }),
-    ),
-  )
-  .map(setDisplayName("SafeArea"))
-  .flatten() as RCT<SafeAreaProps>;
+export const SafeArea = augment<SafeAreaProps, BoxProps>({
+  defaultProps: {
+    css: safeAreaMixin,
+  },
+  displayName: "SafeArea",
+  omittedProps: safeAreaBasePropsKeys,
+})(Box);
 
-export const SafeAreaLeft = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ l: true }))
-  .map(setDisplayName("SafeAreaLeft"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaRight = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ r: true }))
-  .map(setDisplayName("SafeAreaRight"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaTop = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ t: true }))
-  .map(setDisplayName("SafeAreaTop"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaBottom = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ b: true }))
-  .map(setDisplayName("SafeAreaBottom"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaX = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ x: true }))
-  .map(setDisplayName("SafeAreaX"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaY = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ y: true }))
-  .map(setDisplayName("SafeAreaY"))
-  .flatten() as RCT<SafeAreaProps>;
-export const SafeAreaAll = IdMonad.of(SafeArea)
-  .map(defaultProps<SafeAreaProps & BoxProps>({ all: true }))
-  .map(setDisplayName("SafeAreaAll"))
-  .flatten() as RCT<SafeAreaProps>;
+export const SafeAreaLeft = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    l: true,
+  },
+  displayName: "SafeAreaLeft",
+})(SafeArea);
+export const SafeAreaRight = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    r: true,
+  },
+  displayName: "SafeAreaRight",
+})(SafeArea);
+export const SafeAreaTop = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    t: true,
+  },
+  displayName: "SafeAreaTop",
+})(SafeArea);
+export const SafeAreaBottom = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    b: true,
+  },
+  displayName: "SafeAreaBottom",
+})(SafeArea);
+
+export const SafeAreaX = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    x: true,
+  },
+  displayName: "SafeAreaX",
+})(SafeArea);
+export const SafeAreaY = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    y: true,
+  },
+  displayName: "SafeAreaY",
+})(SafeArea);
+
+export const SafeAreaAll = augment<SafeAreaProps, SafeAreaProps>({
+  defaultProps: {
+    all: true,
+  },
+  displayName: "SafeAreaAll",
+})(SafeArea);

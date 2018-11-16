@@ -1,24 +1,21 @@
 /**
- * CodeBlock component
+ * Code component
  */
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT, withStyle } from "../../util";
-import { CoreProps } from "../base";
-import { Text, TextProps } from "./Text";
+import { augment } from "../../util/augment";
+import { Code, CodeProps } from "./Code";
 
 /** Declarations */
 
-export interface CodeBlockProps extends CoreProps, PropsType<"code"> {}
+// tslint:disable-next-line:no-empty-interface
+export interface CodeBlockProps extends CodeProps {}
 
 /**
- * Code block
+ * CodeBlock
  */
-export const CodeBlock = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "code" }))
-  .map(withStyle({ display: "block" }))
-  .map(setDisplayName("Code"))
-  .flatten() as RCT<CodeBlockProps>;
+export const CodeBlock = augment<CodeBlockProps, CodeProps>({
+  defaultProps: { css: { display: "block" } },
+  displayName: "CodeBlock",
+})(Code);

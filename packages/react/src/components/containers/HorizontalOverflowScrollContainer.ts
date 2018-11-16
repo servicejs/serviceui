@@ -4,18 +4,17 @@
 
 /** Imports */
 
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, RCT, withStyle } from "../../util";
+import { augment } from "../../util";
 import { Box, BoxProps } from "../base";
 
 /** Declarations */
 
-export const HorizontalOverflowScrollContainer = IdMonad.of(Box)
-  .map(
-    withStyle({
+export const HorizontalOverflowScrollContainer = augment<BoxProps, BoxProps>({
+  defaultProps: {
+    css: {
       maxWidth: "100%",
       overflowX: "auto",
-    }),
-  )
-  .map(setDisplayName("HorizontalOverflowScrollContainer"))
-  .flatten() as RCT<BoxProps>;
+    },
+  },
+  displayName: "HorizontalOverflowScrollContainer",
+})(Box);

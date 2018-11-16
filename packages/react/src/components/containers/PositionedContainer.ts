@@ -5,11 +5,8 @@
 /** Imports */
 
 import { PositionProperty } from "csstype";
-import { setDisplayName } from "recompose";
-import defaultProps from "recompose/defaultProps";
-import withProps from "recompose/withProps";
-import { IdMonad, omitProps, RCT, withStyle } from "../../util";
-import { Box, BoxProps } from "../base/Box";
+import { augment } from "../../util/augment";
+import { Box, BoxProps } from "../base";
 
 /** Declarations */
 
@@ -21,34 +18,55 @@ export interface PositionedContainerProps
   extends BoxProps,
     PositionedContainerBaseProps {}
 
-export const PositionedContainer = IdMonad.of(Box)
-  .map(
-    withStyle(({ position }) => ({
+/**
+ * PositionedContainer component
+ */
+export const PositionedContainer = augment<PositionedContainerProps, BoxProps>({
+  defaultProps: {
+    css: ({ position }) => ({
       position,
-    })),
-  )
-  .map(omitProps<PositionedContainerProps, "position">("position"))
-  .map(setDisplayName("PositionedContainer"))
-  .flatten() as RCT<PositionedContainerProps>;
-
-withProps<BoxProps, PositionedContainerProps>(
-  ({ position, css, ...props }) => ({
-    css: [css, { position }],
-  }),
-)(Box);
+    }),
+  },
+  displayName: "PositionedContainer",
+  omittedProps: ["position"],
+})(Box);
 
 // prettier-ignore
-export const StaticPositionedContainer: RCT<PositionedContainerProps> =
-  defaultProps<PositionedContainerProps>({ position: "static" })(PositionedContainer);
+export const StaticPositionedContainer = augment<PositionedContainerProps, PositionedContainerProps>({
+  defaultProps: {
+    position: "static",
+  },
+  displayName: "StaticPositionedContainer"
+})(PositionedContainer);
+
 // prettier-ignore
-export const RelativePositionedContainer: RCT<PositionedContainerProps> =
-  defaultProps<PositionedContainerProps>({ position: "relative" })(PositionedContainer);
+export const RelativePositionedContainer = augment<PositionedContainerProps, PositionedContainerProps>({
+  defaultProps: {
+    position: "relative",
+  },
+  displayName: "RelativePositionedContainer"
+})(PositionedContainer);
+
 // prettier-ignore
-export const AbsolutePositionedContainer: RCT<PositionedContainerProps> =
-  defaultProps<PositionedContainerProps>({ position: "absolute" })(PositionedContainer);
+export const AbsolutePositionedContainer = augment<PositionedContainerProps, PositionedContainerProps>({
+  defaultProps: {
+    position: "absolute",
+  },
+  displayName: "AbsolutePositionedContainer"
+})(PositionedContainer);
+
 // prettier-ignore
-export const FixedPositionedContainer: RCT<PositionedContainerProps> =
-  defaultProps<PositionedContainerProps>({ position: "fixed" })(PositionedContainer);
+export const FixedPositionedContainer = augment<PositionedContainerProps, PositionedContainerProps>({
+  defaultProps: {
+    position: "fixed",
+  },
+  displayName: "FixedPositionedContainer"
+})(PositionedContainer);
+
 // prettier-ignore
-export const StickyPositionedContainer: RCT<PositionedContainerProps> =
-  defaultProps<PositionedContainerProps>({ position: "sticky" })(PositionedContainer);
+export const StickyPositionedContainer = augment<PositionedContainerProps, PositionedContainerProps>({
+  defaultProps: {
+    position: "sticky",
+  },
+  displayName: "StickyPositionedContainer"
+})(PositionedContainer);

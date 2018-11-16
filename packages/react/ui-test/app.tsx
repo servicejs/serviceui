@@ -14,6 +14,7 @@ import { inject, observer } from "mobx-react";
 import { setDisplayName } from "recompose";
 import {
   Article,
+  augment,
   BlockQuote,
   Box,
   BoxProps,
@@ -38,14 +39,11 @@ import {
   PreFormattedText,
   Quote,
   rem,
-  SafeArea,
   SafeAreaX,
-  Strong,
   StrongEmphasis,
   Text,
   ThemedProps,
 } from "../src";
-import { IdMonad, RCT, withStyle, wrap } from "../src/util";
 
 // import { objectFlatMap, objectMap } from "../src/util/ObjectFunctor";
 
@@ -55,25 +53,33 @@ const Space = ({ c = " " }: { c?: string }) => (
   <React.Fragment>{c}</React.Fragment>
 );
 
-// prettier-ignore
-const Container = IdMonad.of(Box)
-  .map(withStyle(({theme}) => ({
-  "&": {
-    margin: `0 auto`,
-    maxWidth: rem(33 + 2 * parseFloat(theme!.blh!(1))),
-    padding: theme!.blh!(1),
-    width: "100%",
+const Container = augment<BoxProps, BoxProps>({
+  defaultProps: {
+    css: ({ theme }) => ({
+      "&": {
+        margin: `0 auto`,
+        maxWidth: rem(33 + 2 * parseFloat(theme!.blh!(1))),
+        padding: theme!.blh!(1),
+        width: "100%",
+      },
+      "& > *": { marginTop: theme!.blh!(1) },
+      "& > *:first-child": { marginTop: "0" },
+      "@media (max-width: 768px)": {
+        maxWidth: "100%",
+      },
+    }),
   },
-  "& > *": { marginTop: theme!.blh!(1) },
-  "& > *:first-child": { marginTop: "0" },
-  "@media (max-width: 768px)": {
-    maxWidth: "100%",
-  }
-  })))
-  .map(withTheme)
-  .map(wrap(SafeAreaX))
-  .map(setDisplayName("Container"))
-  .flatten() as RCT<BoxProps>;
+  displayName: "Container",
+})(Box);
+
+const Lorem = () => (
+  <Paragraph>
+    Lorem ipsum dolor sit amet, inani moderatius posidonium id mel, eam id
+    petentium adolescens instructior. Ea modo labitur debitis mea, discere
+    mediocrem abhorreant duo ea. Graeco numquam legimus duo ei. Mel ut tale
+    minim atomorum, nam cu quod sensibus, no mei hinc aliquam dolorem.
+  </Paragraph>
+);
 
 /**
  * Main Application component
@@ -107,38 +113,41 @@ class App extends React.Component<ThemedProps> {
           {/* Text */}
 
           <H3 css={{}}>Text</H3>
-
           <Text>Some text</Text>
 
           {/* Paragraph */}
 
           <H3 css={{}}>Paragraph</H3>
 
-          <Paragraph>Some text in a paragraph</Paragraph>
+          <Lorem />
 
           {/* Heading */}
 
           <H3 css={{}}>Heading</H3>
 
           <Heading>
-            A heading without level will render as <Code>p</Code>
+            A generic heading will render as <Code>p</Code>
           </Heading>
-          <Heading level={1}>
-            A heading with an integer level <Code>n</Code> between 1 and 6 will
-            render as <Code>h1</Code> to <Code>h6</Code> respectively, otherwise
-            as a <Code>p</Code>. Of course, you can override this behaviour
-            using `as`.
-          </Heading>
-          <H1>
+
+          <Lorem />
+
+          <Paragraph>
             You can also use the shorthands <Code>H1</Code> to <Code>H6</Code>{" "}
-            for that.
-          </H1>
+            to render the corresponding tags.
+          </Paragraph>
+
           <H1>Heading 1</H1>
+          <Lorem />
           <H2>Heading 2</H2>
+          <Lorem />
           <H3>Heading 3</H3>
+          <Lorem />
           <H4>Heading 4</H4>
+          <Lorem />
           <H5>Heading 5</H5>
+          <Lorem />
           <H6>Heading 6</H6>
+          <Lorem />
 
           {/* Inline Elements */}
 

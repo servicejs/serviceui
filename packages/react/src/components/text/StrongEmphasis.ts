@@ -4,22 +4,23 @@
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
 import { CoreProps } from "../base";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface StrongEmphasisProps extends CoreProps, PropsType<"strong"> {}
+export interface StrongEmphasisProps
+  extends CoreProps,
+    EmotionPropsType<"strong"> {}
 
 /**
  * Strong emphasis (`<strong>`)
  */
-export const StrongEmphasis = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "strong" }))
-  .map(setDisplayName("StrongEmphasis"))
-  .flatten() as RCT<StrongEmphasisProps>;
+export const StrongEmphasis = augment<StrongEmphasisProps, TextProps>({
+  defaultProps: { as: "strong" },
+  displayName: "StrongEmphasis",
+})(Text);
 
 export const Strong = StrongEmphasis;

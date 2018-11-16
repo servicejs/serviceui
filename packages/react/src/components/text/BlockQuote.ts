@@ -4,21 +4,21 @@
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT, withStyle } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
 import { CoreProps } from "../base";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface BlockQuoteProps extends CoreProps, PropsType<"blockquote"> {}
+export interface BlockQuoteProps
+  extends CoreProps,
+    EmotionPropsType<"blockquote"> {}
 
 /**
  * BlockQuote (`<blockquote>`)
  */
-export const BlockQuote = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "blockquote" }))
-  .map(withStyle({ display: "block" }))
-  .map(setDisplayName("BlockQuote"))
-  .flatten() as RCT<BlockQuoteProps>;
+export const BlockQuote = augment<BlockQuoteProps, TextProps>({
+  defaultProps: { as: "blockquote" },
+  displayName: "BlockQuote",
+})(Text);

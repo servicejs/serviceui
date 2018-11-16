@@ -1,25 +1,24 @@
 /**
- * Emphasis component
+ * Em / Emphasis component
  */
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
 import { CoreProps } from "../base";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface EmphasisProps extends CoreProps, PropsType<"em"> {}
+export interface EmphasisProps extends CoreProps, EmotionPropsType<"em"> {}
 
 /**
  * Emphasis (`<em>`)
  */
-export const Emphasis = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "em" }))
-  .map(setDisplayName("Emphasis"))
-  .flatten() as RCT<EmphasisProps>;
+export const Emphasis = augment<EmphasisProps, TextProps>({
+  defaultProps: { as: "em" },
+  displayName: "Emphasis",
+})(Text);
 
 export const Em = Emphasis;

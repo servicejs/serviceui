@@ -1,26 +1,24 @@
 /**
- * Paragraph component
+ * P / Paragraph component
  */
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT, withStyle } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
 import { CoreProps } from "../base";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface ParagraphProps extends CoreProps, PropsType<"p"> {}
+export interface ParagraphProps extends CoreProps, EmotionPropsType<"p"> {}
 
 /**
  * Paragraph (`<p>`)
  */
-export const Paragraph = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "p" }))
-  .map(withStyle({ display: "block" }))
-  .map(setDisplayName("Paragraph"))
-  .flatten() as RCT<ParagraphProps>;
+export const Paragraph = augment<ParagraphProps, TextProps>({
+  defaultProps: { as: "p" },
+  displayName: "Paragraph",
+})(Text);
 
 export const P = Paragraph;

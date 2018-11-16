@@ -1,28 +1,28 @@
 /**
- * PreFormattedText component
+ * Pre / PreFormattedText component
  */
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT, withStyle, wrap } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
+import { wrap } from "../../util/wrap";
 import { CoreProps } from "../base";
 import { HorizontalOverflowScrollContainer } from "../containers";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface PreFormattedTextProps extends CoreProps, PropsType<"pre"> {}
+export interface PreFormattedTextProps
+  extends CoreProps,
+    EmotionPropsType<"pre"> {}
 
 /**
  * PreFormattedText (`<pre>`)
  */
-export const PreFormattedText = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "pre" }))
-  .map(withStyle({ display: "block" }))
-  .map(wrap(HorizontalOverflowScrollContainer))
-  .map(setDisplayName("PreFormattedText"))
-  .flatten() as RCT<PreFormattedTextProps>;
+export const PreFormattedText = augment<PreFormattedTextProps, TextProps>({
+  defaultProps: { as: "pre", css: { display: "block" } },
+  displayName: "PreFormattedText",
+})(wrap(HorizontalOverflowScrollContainer)(Text));
 
 export const Pre = PreFormattedText;

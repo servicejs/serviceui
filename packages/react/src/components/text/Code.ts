@@ -4,20 +4,19 @@
 
 /** Imports */
 
-import defaultProps from "recompose/defaultProps";
-import setDisplayName from "recompose/setDisplayName";
-import { IdMonad, PropsType, RCT } from "../../util";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
 import { CoreProps } from "../base";
 import { Text, TextProps } from "./Text";
 
 /** Declarations */
 
-export interface CodeProps extends CoreProps, PropsType<"code"> {}
+export interface CodeProps extends CoreProps, EmotionPropsType<"code"> {}
 
 /**
- * Inline code (`<code>`)
+ * Code (`<code>`)
  */
-export const Code = IdMonad.of(Text)
-  .map(defaultProps<TextProps>({ as: "code" }))
-  .map(setDisplayName("Code"))
-  .flatten() as RCT<CodeProps>;
+export const Code = augment<CodeProps, TextProps>({
+  defaultProps: { as: "code" },
+  displayName: "Code",
+})(Text);

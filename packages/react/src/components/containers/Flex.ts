@@ -1,61 +1,107 @@
 /**
- * Text component
+ * Flex components
  */
 
 /** Imports */
 
-import setDisplayName from "recompose/setDisplayName";
-import { withStyle } from "../../util";
-import { Box } from "../base/Box";
+import {
+  AlignContentProperty,
+  AlignItemsProperty,
+  AlignSelfProperty,
+  FlexDirectionProperty,
+  FlexProperty,
+  FlexWrapProperty,
+  JustifyContentProperty,
+} from "csstype";
+import { augment } from "../../util/augment";
+import { Box, BoxProps } from "../base";
 
 /** Declarations */
+
+const flexBoxPropsKeys = [
+  "child",
+  "inline",
+  "direction",
+  "wrap",
+  "justifyContent",
+  "alignContent",
+  "alignItems",
+  "alignSelf",
+  "flex",
+  "order",
+];
+
+/**
+ * FlexProps
+ */
+export interface FlexProps extends BoxProps {
+  child?: boolean;
+  inline?: boolean;
+  direction?: FlexDirectionProperty;
+  wrap?: FlexWrapProperty;
+  justifyContent?: JustifyContentProperty;
+  alignContent?: AlignContentProperty;
+  alignItems?: AlignItemsProperty;
+  alignSelf?: AlignSelfProperty;
+  flex?: FlexProperty<string>;
+  order?: number;
+}
 
 /**
  * Flex component
  */
-export const flexStyles = {
-  alignItems: "center",
-  display: "flex",
-  justifyContent: "center",
-};
-export const Flex = setDisplayName("Flex")(withStyle(flexStyles)(Box));
+export const Flex = augment<FlexProps, BoxProps>({
+  defaultProps: {
+    child: false,
+    inline: false,
 
-export const expandingFlexStyles = {
-  flex: 1,
-  height: "100%",
-  width: "100%",
-};
-export const ExpandingFlex = setDisplayName("ExpandingFlex")(
-  withStyle(expandingFlexStyles)(Flex),
-);
+    css: ({
+      child,
+      inline,
+      direction: flexDirection,
+      wrap: flexWrap,
+      justifyContent,
+      alignContent,
+      alignItems,
+      alignSelf,
+      flex,
+      order,
+    }) => ({
+      alignContent,
+      alignItems,
+      alignSelf,
+      display: child ? undefined : inline ? "inline-flex" : "flex",
+      flex,
+      flexDirection,
+      flexWrap,
+      justifyContent,
+      order,
+    }),
+  },
+  displayName: "Flex",
+  omittedProps: flexBoxPropsKeys,
+})(Box);
 
-export const inlineFlexStyles = {
-  alignItems: "center",
-  display: "inline-flex",
-  justifyContent: "center",
-};
+export const ExpandingFlex = augment<FlexProps, FlexProps>({
+  defaultProps: {
+    flex: 1,
+  },
+})(Flex);
 
-export const InlineFlex = setDisplayName("InlineFlex")(
-  withStyle(inlineFlexStyles)(Box),
-);
+export const FlexRow = augment<FlexProps, FlexProps>({
+  defaultProps: {
+    direction: "row",
+  },
+})(Flex);
 
-export const FlexRow = setDisplayName("FlexRow")(
-  withStyle({
-    flexDirection: "row",
-  })(ExpandingFlex),
-);
-export const FlexColumn = setDisplayName("FlexColumn")(
-  withStyle({
-    flexDirection: "column",
-  })(ExpandingFlex),
-);
-export const InlineFlexRow = setDisplayName("InlineFlexRow")(
-  withStyle({
-    flexDirection: "row",
-  })(Flex),
-);
-export const InlineFlexColumn = setDisplayName("InlineFlexColumn")(
-  withStyle({
-    flexDirection: "column",
-  })(Flex),
-);
+export const WrappingFlexRow = augment<FlexProps, FlexProps>({
+  defaultProps: {
+    wrap: "wrap",
+  },
+})(FlexRow);
+
+export const FlexColumn = augment<FlexProps, FlexProps>({
+  defaultProps: {
+    direction: "column",
+  },
+})(Flex);

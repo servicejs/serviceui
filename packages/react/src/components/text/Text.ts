@@ -4,19 +4,18 @@
 
 /** Imports */
 
-import setDisplayName from "recompose/setDisplayName";
-import { asComponent, IdMonad, PropsType, RCT, withStyle } from "../../util";
-import { Box, CoreProps } from "../base/Box";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
+import { Box, BoxProps, CoreProps } from "../base";
 
 /** Declarations */
 
-export interface TextProps extends CoreProps, PropsType<"span"> {}
+export interface TextProps extends CoreProps, EmotionPropsType<"span"> {}
 
 /**
  * Text (`<span>`)
  */
-export const Text = IdMonad.of(Box)
-  .map(asComponent("span"))
-  .map(withStyle({ display: "inline" }))
-  .map(setDisplayName("Text"))
-  .flatten() as RCT<TextProps>;
+export const Text = augment<TextProps, BoxProps>({
+  defaultProps: { as: "span" },
+  displayName: "Text",
+})(Box);

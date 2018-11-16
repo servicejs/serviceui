@@ -7,7 +7,7 @@ export * from "./Code";
 export * from "./CodeBlock";
 export * from "./Emphasis";
 export * from "./Heading";
-export * from "./InlineQuote";
+export * from "./Quote";
 export * from "./Paragraph";
 export * from "./PreFormattedText";
 export * from "./StrongEmphasis";

@@ -1,48 +1,15 @@
-import { css, injectGlobal, Interpolation } from "emotion";
+import { injectGlobal, Interpolation } from "emotion";
 import {
   cssReset,
-  em,
   fillScreenFlexReset,
   fillScreenReset,
   FontList,
   MediaQuery,
   MediaQueryCondition,
-  percentage,
   rem,
-  Unit,
 } from "../../mixins";
 import { Theme, ThemeProps } from "../Theme";
 import colors from "./colors.macro";
-
-// const objectWithKeyAndValue = <K extends string, T>(key: K, value: T) => ({
-//     [key]: value,
-// }) as { [k in K]: T; };
-
-// const namedStyleFactory = <T>(name: string) => (value: T) => objectWithKeyAndValue(name, value);
-// const namedStyleMixinFactory =  <T>(name: string) => (value: T) => css(namedStyleFactory(name)(value) as Interpolation);
-
-// const mixin = <A extends any[]>(styleFactory: (...args: A) => Interpolation) =>
-//   (...args: A) => css(styleFactory(...args));
-
-// const withDefaultProps = <P extends object, DP extends Partial<P>, R>(defaultProps: DP, fn: (props: P) => R) =>
-//   (props: Pick<P, Exclude<keyof P, keyof DP>> & Pick<Partial<P>, Extract<keyof P, keyof DP>>) =>
-//     fn({ ...(defaultProps as object), ...(props as object) } as P);
-
-// interface BorderRadiusStyleProps {
-//   n: number;
-//   unit: Unit;
-// }
-
-// const borderRadiusStyles = ({n, unit}: BorderRadiusStyleProps) => ({ borderRadius: unit(n) });
-// const borderRadiusMixin = mixin(borderRadiusStyles);
-
-// // const colorStyle = ;
-
-// const pillShapeStyles = withDefaultProps({ n: 10000, unit: em }, borderRadiusStyles);
-// pillShapeStyles({});
-// const pillShapeMixin = mixin(pillShapeStyles);
-
-// const aspectRatioStyles = (aspectRatio: number) => ({ paddingBottom: percentage(1 / aspectRatio) });
 
 export interface DefaultThemeProps<
   NamedColors extends string = keyof typeof colors
@@ -80,10 +47,17 @@ export class DefaultTheme<
     },
   };
 
-  private defaultComponentStyles = {
-    Box: {},
-    Text: {},
-    Article: {},
+  private defaultComponentStyles: { [key: string]: Interpolation } = {
+    Box: {
+      display: "block",
+    },
+    Text: {
+      display: "inline",
+    },
+    // tslint:disable-next-line:object-literal-sort-keys
+    Paragraph: {
+      display: "block",
+    },
     Heading: {
       display: "block",
       fontWeight: 700,
@@ -110,10 +84,72 @@ export class DefaultTheme<
     },
     H6: {
       fontSize: rem(1.0),
-      fontWeight: 400,
       lineHeight: this.blh(1.5),
-      textTransform: "small-caps",
     },
+    InlineQuote: {
+      "&": {
+        display: "inline",
+        fontStyle: "italic",
+        quotes: '"“" "”" "‘" "’"',
+      },
+
+      ":before": {
+        content: "open-quote",
+        fontStyle: "normal",
+      },
+
+      ":after": {
+        content: "close-quote",
+        fontStyle: "normal",
+      },
+    },
+    BlockQuote: {
+      "&": {
+        borderLeftColor: "inherit",
+        borderLeftStyle: "solid",
+        borderLeftWidth: this.blh(1 / 8),
+
+        display: "block",
+        fontStyle: "italic",
+        paddingBottom: this.blh(1),
+        paddingLeft: this.blh(1 - 1 / 8),
+        paddingTop: this.blh(1),
+        quotes: '"“" "”" "‘" "’"',
+      },
+
+      ":before": {
+        content: "open-quote",
+        // display: "block",
+        fontStyle: "normal",
+        // textAlign: "left",
+      },
+
+      ":after": {
+        content: "close-quote",
+        // display: "block",
+        fontStyle: "normal",
+        // textAlign: "right",
+      },
+    },
+    Code: {
+      display: "inline",
+      fontFamily: "monospace",
+    },
+    CodeBlock: {
+      display: "block",
+    },
+    PreFormattedText: {
+      display: "block",
+    },
+    Emphasis: {
+      display: "inline",
+      fontStyle: "italic",
+    },
+    StrongEmphasis: {
+      display: "inline",
+      fontWeight: 700,
+    },
+    Article: {},
   };
 
   constructor(props: DefaultThemeProps = DefaultTheme.defaultProps) {
@@ -121,6 +157,7 @@ export class DefaultTheme<
   }
 
   public componentStyles = (componentName: string, props: any) => {
+    console.log(componentName);
     const value = (this.defaultComponentStyles as any)[componentName];
     if (value) {
       if (typeof value === "function") {

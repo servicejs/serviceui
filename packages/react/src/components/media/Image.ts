@@ -4,32 +4,27 @@
 
 /** Imports */
 
-import * as React from "react";
-import setDisplayName from "recompose/setDisplayName";
-import withProps from "recompose/withProps";
-import { IdMonad, PropsType, RCT } from "../../util";
-import { Box, CssProps } from "../base/Box";
+import { augment } from "../../util/augment";
+import { EmotionPropsType } from "../../util/PropsType";
+import { Box, BoxProps, CoreProps } from "../base";
 
 /** Declarations */
 
-export interface ImageProps extends CssProps, PropsType<"img"> {}
+export interface ImageProps extends CoreProps, EmotionPropsType<"img"> {}
 
-export const Image = IdMonad.of((props: ImageProps) =>
-  React.createElement(Box, { as: "img", ...props }),
-)
-  .map(
-    withProps<ImageProps, ImageProps>(({ css, ...props }) => ({
-      css: [
-        {
-          display: "block",
-          maxWidth: "100%",
-          maxHeight: "100%",
-          width: "auto",
-          height: "auto",
-        },
-        css,
-      ],
-    })),
-  )
-  .map(setDisplayName("Image"))
-  .flatten() as RCT<ImageProps>;
+/**
+ * Image (`<img>`)
+ */
+export const Image = augment<ImageProps, BoxProps>({
+  defaultProps: {
+    as: "img",
+    css: {
+      display: "block",
+      height: "auto",
+      maxHeight: "100%",
+      maxWidth: "100%",
+      width: "auto",
+    },
+  },
+  displayName: "Image",
+})(Box);

@@ -1,7 +1,7 @@
 {
   "name": "@service-ui/react",
   "description": "React implementation of the service-ui component framework",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Frédérique Mittelstaedt <npm@gfm.io> (https://www.gfm.io)",
   "main": "dist/index",
   "module": "dist/index.mjs",
@@ -11,6 +11,7 @@
   "private": true,
   "scripts": {
     "dev": "parcel -d ./ui-test/dist ./ui-test/index.html",
+    "dev:build": "parcel build -d ./ui-test/dist -t node ./ui-test/index.html",
     "gulp": "gulp",
     "build": "gulp"
   },
@@ -51,6 +52,8 @@
     "vinyl": "^2.2.0"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.0-beta.12",
+    "@emotion/styled": "^10.0.0-beta.12",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "mobx": "^4.0.0 || ^5.0.0",
