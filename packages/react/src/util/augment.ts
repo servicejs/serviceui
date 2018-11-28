@@ -5,6 +5,7 @@
 /** Imports */
 
 import { StyledOtherComponent } from "create-emotion-styled";
+import React from "react";
 import styled from "react-emotion";
 import setDisplayName from "recompose/setDisplayName";
 import { CoreProps } from "../components/base/types";
@@ -81,7 +82,11 @@ export const augment = <
 }: AugmentProps<OuterProps>) => (base: React.ComponentType<InnerProps>) => {
   const theThemeKey = themeKey || displayName;
   const c = styled<OuterProps>(
-    (base as any) as React.ComponentType<OuterProps>,
+    ((props: any) =>
+      React.createElement(base, props) as any) as React.ComponentType<
+      OuterProps
+    >,
+    // base as any,
     {
       shouldForwardProp: omitValues("css", ...omittedProps),
     },
@@ -92,6 +97,6 @@ export const augment = <
       (base.displayName && `Augmented(${base.displayName})`) ||
       "Component",
   )(c);
-  delete c.__emotion_real;
+  // delete c.__emotion_base;
   return c as StyledOtherComponent<OuterProps, InnerProps, ThemeType>;
 };

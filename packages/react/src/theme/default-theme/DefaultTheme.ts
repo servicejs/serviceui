@@ -1,6 +1,6 @@
 import { injectGlobal } from "emotion";
 import { Interpolation } from "react-emotion";
-import { FlexBaseProps } from "../../components";
+import { ButtonProps, FlexBaseProps } from "../../components";
 import {
   cssReset,
   fillScreenFlexReset,
@@ -59,10 +59,14 @@ export class DefaultTheme<
     // tslint:disable-next-line:object-literal-sort-keys
     Paragraph: {
       display: "block",
+      // marginBottom: this.blh(1),
+      // marginTop: this.blh(1),
     },
     Heading: {
       display: "block",
       fontWeight: 700,
+      // marginBottom: this.blh(1),
+      // marginTop: this.blh(1),
     },
     H1: {
       fontSize: rem(2),
@@ -175,6 +179,67 @@ export class DefaultTheme<
       justifyContent,
       order,
     }),
+
+    Button: ({
+      shape = "rounded",
+      color = this.colors.blue.base,
+      fill = "filled",
+    }: ButtonProps) => {
+      const styles: any = {
+        cursor: "pointer",
+
+        alignItems: "center",
+        // display: "block",
+        justifyContent: "center",
+
+        maxWidth: "33em",
+        paddingBottom: this.blh(1 / 4),
+        paddingLeft: this.blh(1),
+        paddingRight: this.blh(1),
+        paddingTop: this.blh(1 / 4),
+        width: "max-content",
+
+        fontSize: "0.9rem",
+        lineHeight: this.blh(1),
+      };
+
+      switch (shape) {
+        case "rounded":
+          styles.borderRadius = this.blh(1 / 4);
+          break;
+        case "pill":
+          styles.borderRadius = "10000em";
+          styles.paddingLeft = this.blh(1);
+          styles.paddingRight = this.blh(1);
+          break;
+        case "round":
+          styles.borderRadius = "50%";
+          break;
+        default:
+          styles.borderRadius = "0";
+      }
+
+      if (fill === "transparent" || color === "transparent") {
+        styles.background = "transparent";
+        styles.color = "inherit";
+        return styles;
+      }
+
+      switch (fill) {
+        case "filled":
+          styles.color = "#FFF";
+          styles.background = color;
+          break;
+        case "outline":
+          styles.color = color;
+          styles.borderColor = color;
+          styles.borderWidth = this.blh(1 / 16);
+          styles.borderStyle = "solid";
+          break;
+      }
+
+      return styles;
+    },
   };
 
   constructor(props: DefaultThemeProps = DefaultTheme.defaultProps) {
@@ -182,6 +247,7 @@ export class DefaultTheme<
   }
 
   public componentStyles = (componentName: string, props: any) => {
+    // console.log(componentName, props);
     const value = (this.defaultComponentStyles as any)[componentName];
     if (value) {
       if (typeof value === "function") {
@@ -209,85 +275,85 @@ export class DefaultTheme<
         "&": {
           fontSize: this.props.baseFontSize,
         },
-        // Desktop
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("min-width", "1280px"),
-        )({
-          fontSize: `18px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("min-width", "1920px"),
-        )({
-          fontSize: `21px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("min-width", "2560px"),
-        )({
-          fontSize: `24px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("min-width", "3840px"),
-        )({
-          fontSize: `${100 / (1920 / 21)}vw`,
-        }),
+        // // Desktop
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("min-width", "1280px"),
+        // )({
+        //   fontSize: `18px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("min-width", "1920px"),
+        // )({
+        //   fontSize: `21px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("min-width", "2560px"),
+        // )({
+        //   fontSize: `24px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("min-width", "3840px"),
+        // )({
+        //   fontSize: `${100 / (1920 / 21)}vw`,
+        // }),
 
-        // Mobile
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "portrait"),
-          MediaQueryCondition("min-width", "640px"),
-        )({
-          fontSize: `18px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "landscape"),
-          MediaQueryCondition("min-height", "640px"),
-        )({
-          fontSize: `18px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "portrait"),
-          MediaQueryCondition("min-width", "768px"),
-        )({
-          fontSize: `21px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "landscape"),
-          MediaQueryCondition("min-height", "768px"),
-        )({
-          fontSize: `21px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "portrait"),
-          MediaQueryCondition("min-width", "1024px"),
-        )({
-          fontSize: `24px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "landscape"),
-          MediaQueryCondition("min-height", "1024px"),
-        )({
-          fontSize: `24px`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "portrait"),
-          MediaQueryCondition("min-width", "1280px"),
-        )({
-          fontSize: `${100 / (1280 / 24)}vmin`,
-        }),
-        ...MediaQuery("only screen")(
-          MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
-          MediaQueryCondition("orientation", "landscape"),
-          MediaQueryCondition("min-height", "1280px"),
-        )({
-          fontSize: `${100 / (1280 / 24)}vmin`,
-        }),
+        // // Mobile
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "portrait"),
+        //   MediaQueryCondition("min-width", "640px"),
+        // )({
+        //   fontSize: `18px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "landscape"),
+        //   MediaQueryCondition("min-height", "640px"),
+        // )({
+        //   fontSize: `18px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "portrait"),
+        //   MediaQueryCondition("min-width", "768px"),
+        // )({
+        //   fontSize: `21px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "landscape"),
+        //   MediaQueryCondition("min-height", "768px"),
+        // )({
+        //   fontSize: `21px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "portrait"),
+        //   MediaQueryCondition("min-width", "1024px"),
+        // )({
+        //   fontSize: `24px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "landscape"),
+        //   MediaQueryCondition("min-height", "1024px"),
+        // )({
+        //   fontSize: `24px`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "portrait"),
+        //   MediaQueryCondition("min-width", "1280px"),
+        // )({
+        //   fontSize: `${100 / (1280 / 24)}vmin`,
+        // }),
+        // ...MediaQuery("only screen")(
+        //   MediaQueryCondition("-webkit-min-device-pixel-ratio", "2"),
+        //   MediaQueryCondition("orientation", "landscape"),
+        //   MediaQueryCondition("min-height", "1280px"),
+        // )({
+        //   fontSize: `${100 / (1280 / 24)}vmin`,
+        // }),
       },
 
       "body": {
