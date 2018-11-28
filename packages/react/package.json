@@ -1,7 +1,7 @@
 {
   "name": "@service-ui/react",
   "description": "React implementation of the service-ui component framework",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Frédérique Mittelstaedt <npm@gfm.io> (https://www.gfm.io)",
   "main": "dist/index",
   "module": "dist/index.mjs",
