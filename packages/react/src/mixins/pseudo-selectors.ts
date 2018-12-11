@@ -1,6 +1,6 @@
 // tslint:disable:object-literal-sort-keys
 
-export const enum PseudoSelectors {
+export enum PseudoSelectors {
   // No pseudo selector
   None = "&",
   // Children elements
