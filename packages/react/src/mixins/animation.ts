@@ -2,7 +2,7 @@
  * Animation property helpers
  */
 
-import { CommaSeparatedList } from "./util";
+import { CommaSeparatedList } from "../util";
 
 export interface AnimationProps {
   timingFunction?: string;

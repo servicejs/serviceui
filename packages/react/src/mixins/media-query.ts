@@ -1,7 +1,9 @@
-import { Interpolation } from "emotion";
+import { InterpolationWithTheme } from "@emotion/core";
 
-export const MediaQuery = (target?: string) => (...conditions: string[]) => (
-  rules: Interpolation,
+export const MediaQuery = (target?: string) => (...conditions: string[]) => <
+  ThemeType extends object = any
+>(
+  rules: InterpolationWithTheme<ThemeType>,
 ) => {
   let queryString = "@media";
 
@@ -15,9 +17,7 @@ export const MediaQuery = (target?: string) => (...conditions: string[]) => (
       .map((condition) => `(${condition})`)
       .join(" and ");
   }
-  return {
-    [queryString]: rules,
-  };
+  return { [queryString]: rules };
 };
 
 export const MediaQueryCondition = (property: string, value: string) =>

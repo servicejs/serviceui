@@ -4,7 +4,7 @@
 
 /** Imports */
 
-import { CommaSeparatedList } from "./util";
+import { CommaSeparatedList } from "../util/css-value-helpers";
 
 /** Declarations */
 

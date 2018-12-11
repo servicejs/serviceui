@@ -1,20 +1,24 @@
 /**
- * Library entrypoint
+ * @service.ui/react library entrypoint
  */
 
 export * from "./components";
 export * from "./mixins";
 export * from "./theme";
+export * from "./util";
 
-export {
-  augment,
-  EmotionPropsType,
-  PropsType,
-  wrap,
-  setDefaultProps,
-  themed,
-  mergeDefaultProps,
-} from "./util";
+// Global declarations to allow the `as` prop on all JSX elements
 
-import * as _util from "./util";
-export const util = _util;
+// declare module "react" {
+//   interface DOMAttributes<T> {
+//     as?: keyof JSX.IntrinsicElements | React.ComponentType;
+//   }
+// }
+
+// declare global {
+//   namespace JSX {
+//     interface IntrinsicAttributes {
+//       as?: keyof IntrinsicElements | React.ComponentType;
+//     }
+//   }
+// }

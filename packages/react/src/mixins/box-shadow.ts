@@ -4,7 +4,9 @@
 
 /** Imports */
 
-import { CommaSeparatedList } from "./util";
+import { BoxShadowProperty } from "csstype";
+import { CommaSeparatedList } from "../util";
+import { Mixin } from "./mixin";
 
 /** Declarations */
 
@@ -17,27 +19,17 @@ export interface BoxShadowProps {
   inset?: boolean;
 }
 
-export const boxShadow = ({
-  color,
-  x,
-  y,
-  blur,
-  spread,
-  inset,
-}: BoxShadowProps) =>
-  [
-    color,
-    x || "0",
-    y || "0",
-    blur || (spread ? "0" : undefined),
-    spread,
-    inset ? "inset" : undefined,
-  ]
+export const boxShadow = ({ color, x, y, blur, spread, inset }: BoxShadowProps) =>
+  [color, x || "0", y || "0", blur || (spread ? "0" : undefined), spread, inset ? "inset" : undefined]
     .filter(Boolean)
     .join(" ");
 
 export const boxShadowList = CommaSeparatedList;
 
-export const boxShadowMixin = (...values: string[]) => ({
-  boxShadow: boxShadowList(...values),
+export interface BoxShadowShorthandProps {
+  bsh?: BoxShadowProperty | BoxShadowProperty[];
+}
+
+export const boxShadowMixin: Mixin<BoxShadowShorthandProps> = ({ bsh }: BoxShadowShorthandProps) => ({
+  boxShadow: typeof bsh !== "undefined" ? (Array.isArray(bsh) ? boxShadowList(bsh) : bsh) : undefined,
 });

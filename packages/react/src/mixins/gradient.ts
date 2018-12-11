@@ -1,4 +1,10 @@
-import { CommaSeparatedList, SpaceSeparatedList } from "./util";
+/**
+ * Gradient helper functions
+ */
+
+/** Imports */
+
+import { CommaSeparatedList, SpaceSeparatedList } from "../util";
 
 export interface GradientStep {
   position: string;

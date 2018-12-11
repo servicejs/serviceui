@@ -2,23 +2,41 @@
  * UI test entrypoint
  */
 
-import { ThemeProvider } from "emotion-theming";
+/** @jsx jsx */
+
+import { Global, jsx } from "@emotion/core";
+import { configure } from "mobx";
 import { Provider } from "mobx-react";
-import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { defaultTheme } from "../../src";
+import ErrorBoundary from "react-error-boundary";
+
+import { cssReset, fillScreenFlexReset, fillScreenReset, systemFontReset } from "../../src";
+
+import { StrictMode } from "react";
 import App from "./app";
-import { ViewModel } from "./ViewModel";
+import { MobxThemeProvider } from "./MobxThemeProvider";
+import { SampleTheme } from "./theme";
 
-defaultTheme.injectGlobal();
+const theme = new SampleTheme();
 
-const viewModel = new ViewModel();
+configure({
+  enforceActions: "always",
+});
 
 ReactDOM.render(
-  <Provider viewModel={viewModel}>
-    <ThemeProvider theme={defaultTheme}>
-      <App />
-    </ThemeProvider>
-  </Provider>,
+  <StrictMode>
+    <ErrorBoundary>
+      <Provider theme={theme}>
+        <MobxThemeProvider>
+          <Global styles={cssReset} />
+          <Global styles={fillScreenReset()} />
+          <Global styles={fillScreenFlexReset()} />
+          <Global styles={systemFontReset()} />
+          <Global styles={theme.global} />
+          <App />
+        </MobxThemeProvider>
+      </Provider>
+    </ErrorBoundary>
+  </StrictMode>,
   document.getElementById("root"),
 );

@@ -3,5 +3,6 @@
   "tslint.autoFixOnSave": true,
   "markdownlint.config": {
     "list-marker-space": false
-  }
+  },
+  "search.useIgnoreFiles": true
 }

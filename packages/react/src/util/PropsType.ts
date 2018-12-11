@@ -1,27 +1,17 @@
 /**
- * PropsType helper type
+ * PropsType type helper
  */
 
 /** Imports */
 
-import * as React from "react";
+import { PropsOf } from "@emotion/styled-base/types/helper";
+import { ComponentType } from "react";
 
-/** Declarations */
-
-// prettier-ignore
-export type ReactComponentPropsType<T> = T extends React.ComponentType<infer P> ? P : never;
-// prettier-ignore
-export type IntrinsicComponentPropsType<T> = T extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[T] : never;
-// prettier-ignore
-export type PropsType<T> = T extends React.ComponentType<infer P>
-  ? P
-  : (
-    T extends keyof JSX.IntrinsicElements
-      ? JSX.IntrinsicElements[T]
-      : never
-    );
-
-export type EmotionPropsType<T> = Pick<
-  PropsType<T>,
-  Exclude<keyof PropsType<T>, "css">
->;
+/**
+ * Extracts the Props type of a React component or of an intrinsic element
+ */
+export type PropsType<T> = T extends ComponentType<any>
+  ? PropsOf<T>
+  : T extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[T]
+  : never;

@@ -13,7 +13,7 @@ trailingComma = "all"
 [[overrides]]
 files = "*.ts"
 [overrides.options]
-printWidth = 80
+printWidth = 120
 tabWidth = 2
 
 [[overrides]]
@@ -25,7 +25,7 @@ tabWidth = 2
 [[overrides]]
 files = "*.tsx"
 [overrides.options]
-printWidth = 80
+printWidth = 120
 tabWidth = 2
 
 [[overrides]]

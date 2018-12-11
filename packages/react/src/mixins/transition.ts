@@ -1,5 +1,4 @@
-import { CommaSeparatedList, SpaceSeparatedList } from "./util";
-"";
+import { CommaSeparatedList, SpaceSeparatedList } from "../util";
 
 export const TimingFunctions = {
   ease: "ease",

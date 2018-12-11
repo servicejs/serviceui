@@ -1,5 +1,0 @@
-/**
- * Form components
- */
-
-export default {};
