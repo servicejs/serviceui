@@ -23,31 +23,31 @@ export const SafeAreaLeft = augment<typeof SafeArea, {}>({
 
 export const SafeAreaRight = augment<typeof SafeArea, {}>({
   component: SafeArea,
-  defaultProps: { l: true },
+  defaultProps: { r: true },
   displayName: "SafeAreaRight",
 });
 
 export const SafeAreaTop = augment<typeof SafeArea, {}>({
   component: SafeArea,
-  defaultProps: { l: true },
+  defaultProps: { t: true },
   displayName: "SafeAreaTop",
 });
 
 export const SafeAreaBottom = augment<typeof SafeArea, {}>({
   component: SafeArea,
-  defaultProps: { l: true },
+  defaultProps: { b: true },
   displayName: "SafeAreaBottom",
 });
 
 export const SafeAreaX = augment<typeof SafeArea, {}>({
   component: SafeArea,
-  defaultProps: { l: true },
+  defaultProps: { x: true },
   displayName: "SafeAreaX",
 });
 
 export const SafeAreaY = augment<typeof SafeArea, {}>({
   component: SafeArea,
-  defaultProps: { l: true },
+  defaultProps: { y: true },
   displayName: "SafeAreaY",
 });
 
