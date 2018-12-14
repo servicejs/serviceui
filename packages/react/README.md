@@ -42,7 +42,7 @@ class ExampleTheme {
         switch (name) {
             // Styles for `Text`
             case "Text":
-                return (props) => {
+                return (props: any) => {
                     if (props.dir === "rtl") {
                         return { color: this.colors.green };
                     }
@@ -53,31 +53,30 @@ class ExampleTheme {
                 };
             // Default styles applied to each element that doesn't match (here: none)
             default:
-                return (props) => ({});
+                return (props: any) => ({});
         }
     };
 }
 
-const theme = new ExampleTheme();
+const exampleTheme = new ExampleTheme();
 
 /**
  * Our main application component
  * `withTheme`injects the theme from the React context
  */
-const App = withTheme(({ theme }: { theme?: ExampleTheme }) => (
+const App = ({ theme }: { theme?: ExampleTheme }) => (
     <Box bg={theme!.colors.black} c={theme!.colors.white}>
-        <Text>Hello World</Text>
         <Text dir="ltr">Hello World with direction LTR in red</Text>
         <Text dir="rtl">Hello World with direction RTL in green</Text>
     </Box>
-));
+);
 
 /**
  * Render the app with ReactDOM
  */
 ReactDOM.render(
-    {/* Injects the theme into the context */}
-    <ThemeProvider theme={n}>
+    // Injects the theme into the context
+    <ThemeProvider theme={exampleTheme}>
         {/* Global CSS resets and styles */}
         <Global styles={cssReset} />
         <Global styles={fillScreenReset()} />
