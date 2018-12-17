@@ -26,6 +26,10 @@ import {
   HeightMixinProps,
   marginMixin,
   MarginShorthandProps,
+  maxHeightMixin,
+  MaxHeightMixinProps,
+  maxWidthMixin,
+  MaxWidthMixinProps,
   minHeightMixin,
   MinHeightMixinProps,
   minWidthMixin,
@@ -80,6 +84,8 @@ export interface BoxProps
     // Size
     MinWidthMixinProps,
     MinHeightMixinProps,
+    MaxWidthMixinProps,
+    MaxHeightMixinProps,
     HeightMixinProps,
     WidthMixinProps,
     // Transform, Transition, Animation
@@ -116,7 +122,9 @@ export const Box = augment<typeof Empty, BoxProps>({
     positionMixin,
     positionPropertyMixin,
     // Size
+    maxWidthMixin,
     minWidthMixin,
+    maxHeightMixin,
     minHeightMixin,
     widthMixin,
     heightMixin,
