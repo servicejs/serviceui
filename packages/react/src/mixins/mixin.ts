@@ -1,5 +1,5 @@
 /**
- * Mixin type
+ * Mixin types
  */
 
 import { FunctionInterpolation, Interpolation, WithTheme } from "@emotion/styled";

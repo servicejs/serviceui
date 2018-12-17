@@ -1,161 +1,171 @@
+// tslint:disable:no-namespace
+
 /**
  * Animatable CSS properties
  */
-const AnimatableProperties = {
-  MozOutlineRadius: "-moz-outline-radius",
-  MozOutlineRadiusBottomLeft: "-moz-outline-radius-bottomleft",
-  MozOutlineRadiusBottomRight: "-moz-outline-radius-bottomright",
-  MozOutlineRadiusTopLeft: "-moz-outline-radius-topleft",
-  MozOutlineRadiusTopRight: "-moz-outline-radius-topright",
-  WebkitTextFillColor: "-webkit-text-fill-color",
-  WebkitTextStroke: "-webkit-text-stroke",
-  WebkitTextStrokeColor: "-webkit-text-stroke-color",
-  all: "all",
-  backdropFilter: "backdrop-filter",
-  background: "background",
-  backgroundColor: "background-color",
-  backgroundPosition: "background-position",
-  backgroundSize: "background-size",
-  border: "border",
-  borderBottom: "border-bottom",
-  borderBottomColor: "border-bottom-color",
-  borderBottomLeftRadius: "border-bottom-left-radius",
-  borderBottomRightRadius: "border-bottom-right-radius",
-  borderBottomWidth: "border-bottom-width",
-  borderColor: "border-color",
-  borderLeft: "border-left",
-  borderLeftColor: "border-left-color",
-  borderLeftWidth: "border-left-width",
-  borderRadius: "border-radius",
-  borderRight: "border-right",
-  borderRightColor: "border-right-color",
-  borderRightWidth: "border-right-width",
-  borderTop: "border-top",
-  borderTopColor: "border-top-color",
-  borderTopLeftRadius: "border-top-left-radius",
-  borderTopRightRadius: "border-top-right-radius",
-  borderTopWidth: "border-top-width",
-  borderWidth: "border-width",
-  bottom: "bottom",
-  boxShadow: "box-shadow",
-  caretColor: "caret-color",
-  clip: "clip",
-  clipPath: "clip-path",
-  color: "color",
-  columnCount: "column-count",
-  columnGap: "column-gap",
-  columnRule: "column-rule",
-  columnRuleColor: "column-rule-color",
-  columnRuleWidth: "column-rule-width",
-  columnWidth: "column-width",
-  columns: "columns",
-  filter: "filter",
-  flex: "flex",
-  flexBasis: "flex-basis",
-  flexGrow: "flex-grow",
-  flexShrink: "flex-shrink",
-  font: "font",
-  fontSize: "font-size",
-  fontSizeAdjust: "font-size-adjust",
-  fontStretch: "font-stretch",
-  fontVariationSettings: "font-variation-settings",
-  fontWeight: "font-weight",
-  gap: "gap",
-  gridColumnGap: "grid-column-gap",
-  gridGap: "grid-gap",
-  gridRowGap: "grid-row-gap",
-  height: "height",
-  inset: "inset",
-  insetBlock: "inset-block",
-  insetBlockEnd: "inset-block-end",
-  insetBlockStart: "inset-block-start",
-  insetInline: "inset-inline",
-  insetInlineEnd: "inset-inline-end",
-  insetInlineStart: "inset-inline-start",
-  left: "left",
-  letterSpacing: "letter-spacing",
-  lineClamp: "line-clamp",
-  lineHeight: "line-height",
-  margin: "margin",
-  marginBottom: "margin-bottom",
-  marginLeft: "margin-left",
-  marginRight: "margin-right",
-  marginTop: "margin-top",
-  mask: "mask",
-  maskBorder: "mask-border",
-  maskPosition: "mask-position",
-  maskSize: "mask-size",
-  maxHeight: "max-height",
-  maxLines: "max-lines",
-  maxWidth: "max-width",
-  minHeight: "min-height",
-  minWidth: "min-width",
-  motionOffset: "motion-offset",
-  motionRotation: "motion-rotation",
-  objectPosition: "object-position",
-  offsetPosition: "offset-position",
-  opacity: "opacity",
-  order: "order",
-  outline: "outline",
-  outlineColor: "outline-color",
-  outlineOffset: "outline-offset",
-  outlineWidth: "outline-width",
-  padding: "padding",
-  paddingBottom: "padding-bottom",
-  paddingLeft: "padding-left",
-  paddingRight: "padding-right",
-  paddingTop: "padding-top",
-  perspective: "perspective",
-  perspectiveOrigin: "perspective-origin",
-  right: "right",
-  rotate: "rotate",
-  rowGap: "row-gap",
-  scale: "scale",
-  scrollMargin: "scroll-margin",
-  scrollMarginBlock: "scroll-margin-block",
-  scrollMarginBlockEnd: "scroll-margin-block-end",
-  scrollMarginBlockStart: "scroll-margin-block-start",
-  scrollMarginBottom: "scroll-margin-bottom",
-  scrollMarginInline: "scroll-margin-inline",
-  scrollMarginInlineEnd: "scroll-margin-inline-end",
-  scrollMarginInlineStart: "scroll-margin-inline-start",
-  scrollMarginLeft: "scroll-margin-left",
-  scrollMarginRight: "scroll-margin-right",
-  scrollMarginTop: "scroll-margin-top",
-  scrollPadding: "scroll-padding",
-  scrollPaddingBlock: "scroll-padding-block",
-  scrollPaddingBlockEnd: "scroll-padding-block-end",
-  scrollPaddingBlockStart: "scroll-padding-block-start",
-  scrollPaddingBottom: "scroll-padding-bottom",
-  scrollPaddingInline: "scroll-padding-inline",
-  scrollPaddingInlineEnd: "scroll-padding-inline-end",
-  scrollPaddingInlineStart: "scroll-padding-inline-start",
-  scrollPaddingLeft: "scroll-padding-left",
-  scrollPaddingRight: "scroll-padding-right",
-  scrollPaddingTop: "scroll-padding-top",
-  scrollSnapCoordinate: "scroll-snap-coordinate",
-  scrollSnapDestination: "scroll-snap-destination",
-  scrollbarColor: "scrollbar-color",
-  shapeImageThreshold: "shape-image-threshold",
-  shapeMargin: "shape-margin",
-  shapeOutside: "shape-outside",
-  tabSize: "tab-size",
-  textDecoration: "text-decoration",
-  textDecorationColor: "text-decoration-color",
-  textEmphasis: "text-emphasis",
-  textEmphasisColor: "text-emphasis-color",
-  textIndent: "text-indent",
-  textShadow: "text-shadow",
-  top: "top",
-  transform: "transform",
-  transformOrigin: "transform-origin",
-  translate: "translate",
-  verticalAlign: "vertical-align",
-  visibility: "visibility",
-  width: "width",
-  wordSpacing: "word-spacing",
-  zIndex: "z-index",
-  zoom: "zoom",
-};
+export namespace AnimatableProperties {
+  export const All = "all";
+
+  export const BackdropFilter = "backdrop-filter";
+  export const Background = "background";
+  export const BackgroundColor = "background-color";
+  export const BackgroundPosition = "background-position";
+  export const BackgroundSize = "background-size";
+  export const Border = "border";
+  export const BorderBottom = "border-bottom";
+  export const BorderBottomColor = "border-bottom-color";
+  export const BorderBottomLeftRadius = "border-bottom-left-radius";
+  export const BorderBottomRightRadius = "border-bottom-right-radius";
+  export const BorderBottomWidth = "border-bottom-width";
+  export const BorderColor = "border-color";
+  export const BorderLeft = "border-left";
+  export const BorderLeftColor = "border-left-color";
+  export const BorderLeftWidth = "border-left-width";
+  export const BorderRadius = "border-radius";
+  export const BorderRight = "border-right";
+  export const BorderRightColor = "border-right-color";
+  export const BorderRightWidth = "border-right-width";
+  export const BorderTop = "border-top";
+  export const BorderTopColor = "border-top-color";
+  export const BorderTopLeftRadius = "border-top-left-radius";
+  export const BorderTopRightRadius = "border-top-right-radius";
+  export const BorderTopWidth = "border-top-width";
+  export const BorderWidth = "border-width";
+  export const Bottom = "bottom";
+  export const BoxShadow = "box-shadow";
+  export const CaretColor = "caret-color";
+  export const Clip = "clip";
+  export const ClipPath = "clip-path";
+  export const Color = "color";
+  export const ColumnCount = "column-count";
+  export const ColumnGap = "column-gap";
+  export const ColumnRule = "column-rule";
+  export const ColumnRuleColor = "column-rule-color";
+  export const ColumnRuleWidth = "column-rule-width";
+  export const ColumnWidth = "column-width";
+  export const Columns = "columns";
+  export const Filter = "filter";
+  export const Flex = "flex";
+  export const FlexBasis = "flex-basis";
+  export const FlexGrow = "flex-grow";
+  export const FlexShrink = "flex-shrink";
+  export const Font = "font";
+  export const FontSize = "font-size";
+  export const FontSizeAdjust = "font-size-adjust";
+  export const FontStretch = "font-stretch";
+  export const FontVariationSettings = "font-variation-settings";
+  export const FontWeight = "font-weight";
+  export const Gap = "gap";
+  export const GridColumnGap = "grid-column-gap";
+  export const GridGap = "grid-gap";
+  export const GridRowGap = "grid-row-gap";
+  export const Height = "height";
+  export const Inset = "inset";
+  export const InsetBlock = "inset-block";
+  export const InsetBlockEnd = "inset-block-end";
+  export const InsetBlockStart = "inset-block-start";
+  export const InsetInline = "inset-inline";
+  export const InsetInlineEnd = "inset-inline-end";
+  export const InsetInlineStart = "inset-inline-start";
+  export const Left = "left";
+  export const LetterSpacing = "letter-spacing";
+  export const LineClamp = "line-clamp";
+  export const LineHeight = "line-height";
+  export const Margin = "margin";
+  export const MarginBottom = "margin-bottom";
+  export const MarginLeft = "margin-left";
+  export const MarginRight = "margin-right";
+  export const MarginTop = "margin-top";
+  export const Mask = "mask";
+  export const MaskBorder = "mask-border";
+  export const MaskPosition = "mask-position";
+  export const MaskSize = "mask-size";
+  export const MaxHeight = "max-height";
+  export const MaxLines = "max-lines";
+  export const MaxWidth = "max-width";
+  export const MinHeight = "min-height";
+  export const MinWidth = "min-width";
+  export const MotionOffset = "motion-offset";
+  export const MotionRotation = "motion-rotation";
+  export const ObjectPosition = "object-position";
+  export const OffsetPosition = "offset-position";
+  export const Opacity = "opacity";
+  export const Order = "order";
+  export const Outline = "outline";
+  export const OutlineColor = "outline-color";
+  export const OutlineOffset = "outline-offset";
+  export const OutlineWidth = "outline-width";
+  export const Padding = "padding";
+  export const PaddingBottom = "padding-bottom";
+  export const PaddingLeft = "padding-left";
+  export const PaddingRight = "padding-right";
+  export const PaddingTop = "padding-top";
+  export const Perspective = "perspective";
+  export const PerspectiveOrigin = "perspective-origin";
+  export const Right = "right";
+  export const Rotate = "rotate";
+  export const RowGap = "row-gap";
+  export const Scale = "scale";
+  export const ScrollMargin = "scroll-margin";
+  export const ScrollMarginBlock = "scroll-margin-block";
+  export const ScrollMarginBlockEnd = "scroll-margin-block-end";
+  export const ScrollMarginBlockStart = "scroll-margin-block-start";
+  export const ScrollMarginBottom = "scroll-margin-bottom";
+  export const ScrollMarginInline = "scroll-margin-inline";
+  export const ScrollMarginInlineEnd = "scroll-margin-inline-end";
+  export const ScrollMarginInlineStart = "scroll-margin-inline-start";
+  export const ScrollMarginLeft = "scroll-margin-left";
+  export const ScrollMarginRight = "scroll-margin-right";
+  export const ScrollMarginTop = "scroll-margin-top";
+  export const ScrollPadding = "scroll-padding";
+  export const ScrollPaddingBlock = "scroll-padding-block";
+  export const ScrollPaddingBlockEnd = "scroll-padding-block-end";
+  export const ScrollPaddingBlockStart = "scroll-padding-block-start";
+  export const ScrollPaddingBottom = "scroll-padding-bottom";
+  export const ScrollPaddingInline = "scroll-padding-inline";
+  export const ScrollPaddingInlineEnd = "scroll-padding-inline-end";
+  export const ScrollPaddingInlineStart = "scroll-padding-inline-start";
+  export const ScrollPaddingLeft = "scroll-padding-left";
+  export const ScrollPaddingRight = "scroll-padding-right";
+  export const ScrollPaddingTop = "scroll-padding-top";
+  export const ScrollSnapCoordinate = "scroll-snap-coordinate";
+  export const ScrollSnapDestination = "scroll-snap-destination";
+  export const ScrollbarColor = "scrollbar-color";
+  export const ShapeImageThreshold = "shape-image-threshold";
+  export const ShapeMargin = "shape-margin";
+  export const ShapeOutside = "shape-outside";
+  export const TabSize = "tab-size";
+  export const TextDecoration = "text-decoration";
+  export const TextDecorationColor = "text-decoration-color";
+  export const TextEmphasis = "text-emphasis";
+  export const TextEmphasisColor = "text-emphasis-color";
+  export const TextIndent = "text-indent";
+  export const TextShadow = "text-shadow";
+  export const Top = "top";
+  export const Transform = "transform";
+  export const TransformOrigin = "transform-origin";
+  export const Translate = "translate";
+  export const VerticalAlign = "vertical-align";
+  export const Visibility = "visibility";
+  export const Width = "width";
+  export const WordSpacing = "word-spacing";
+  export const ZIndex = "z-index";
+  export const Zoom = "zoom";
+
+  export namespace Prefixed {
+    export namespace Moz {
+      export const OutlineRadius = "-moz-outline-radius";
+      export const OutlineRadiusBottomLeft = "-moz-outline-radius-bottomleft";
+      export const OutlineRadiusBottomRight = "-moz-outline-radius-bottomright";
+      export const OutlineRadiusTopLeft = "-moz-outline-radius-topleft";
+      export const OutlineRadiusTopRight = "-moz-outline-radius-topright";
+    }
+    export namespace Webkit {
+      export const TextFillColor = "-webkit-text-fill-color";
+      export const TextStroke = "-webkit-text-stroke";
+      export const TextStrokeColor = "-webkit-text-stroke-color";
+    }
+  }
+}
 
 export default AnimatableProperties;

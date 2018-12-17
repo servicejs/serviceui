@@ -4,13 +4,13 @@
 
 import { BorderColorProperty, FillProperty, OutlineColorProperty, StrokeProperty } from "csstype";
 import { selectFirstDefined } from "../util";
-import { Mixin } from "./mixin";
+import { FunctionMixin } from "./mixin";
 
 export interface ColorShorthandProps {
   c?: string;
 }
 
-export const colorMixin: Mixin<ColorShorthandProps> = ({ c: color }) => ({ color });
+export const colorMixin: FunctionMixin<ColorShorthandProps> = ({ c: color }) => ({ color });
 
 export interface BorderColorShorthandProps {
   bc?: BorderColorProperty;
@@ -22,7 +22,7 @@ export interface BorderColorShorthandProps {
   bcy?: BorderColorProperty;
 }
 
-export const borderColorMixin: Mixin<BorderColorShorthandProps> = ({ bc, bcl, bcr, bct, bcb, bcx, bcy }) => ({
+export const borderColorMixin: FunctionMixin<BorderColorShorthandProps> = ({ bc, bcl, bcr, bct, bcb, bcx, bcy }) => ({
   borderColor: bc,
 
   borderBottomColor: selectFirstDefined(bcb, bcy),
@@ -35,16 +35,18 @@ export interface FillShorthandProps {
   fill?: FillProperty;
 }
 
-export const fillMixin: Mixin<FillShorthandProps> = ({ fill }) => ({ fill });
+export const fillMixin: FunctionMixin<FillShorthandProps> = ({ fill }) => ({ fill });
 
 export interface StrokeShorthandProps {
   stroke?: StrokeProperty;
 }
 
-export const strokeMixin: Mixin<StrokeShorthandProps> = ({ stroke }) => ({ stroke });
+export const strokeMixin: FunctionMixin<StrokeShorthandProps> = ({ stroke }) => ({ stroke });
 
 export interface OutlineColorShorthandProps {
   oc?: OutlineColorProperty;
 }
 
-export const outlineColorMixin: Mixin<OutlineColorShorthandProps> = ({ oc: outlineColor }) => ({ outlineColor });
+export const outlineColorMixin: FunctionMixin<OutlineColorShorthandProps> = ({ oc: outlineColor }) => ({
+  outlineColor,
+});

@@ -3,43 +3,44 @@ import { FunctionMixin } from "./mixin";
 
 // From https://developer.mozilla.org/en-US/docs/Web/CSS/transform
 // prettier-ignore
-export const Transforms = {
-  matrix: (...sixNumbers: [number, number, number, number, number, number]) =>
-    `matrix(${sixNumbers.map((n) => n.toString()).join(",")})`,
+// tslint:disable-next-line:no-namespace
+export namespace Transforms {
+  export const Matrix = (...sixNumbers: [number, number, number, number, number, number]) =>
+    `matrix(${sixNumbers.map((n) => n.toString()).join(",")})`;
   // tslint:disable-next-line:max-line-length
-  matrix3d: (...sixteenNumbers: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number]) =>
-    `matrix3d(${sixteenNumbers.map((n) => n.toString()).join(",")})`,
+  export const  matrix3d = (...sixteenNumbers: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number]) =>
+    `matrix3d(${sixteenNumbers.map((n) => n.toString()).join(",")})`;
 
-  translate: (lengthOrPercentageValue: string, ...lengthOrPercentageValues: string[]) =>
-    `translate(${[lengthOrPercentageValue, ...lengthOrPercentageValues].join(", ")})`,
-  translateX: (lengthOrPercentage: string) => `translateX(${lengthOrPercentage})`,
-  translateY: (lengthOrPercentage: string) => `translateX(${lengthOrPercentage})`,
-  translateZ: (length: string) => `translateX(${length})`,
+  export const Translate = (lengthOrPercentageValue: string, ...lengthOrPercentageValues: string[]) =>
+    `translate(${[lengthOrPercentageValue, ...lengthOrPercentageValues].join(", ")})`;
+  export const TranslateX = (lengthOrPercentage: string) => `translateX(${lengthOrPercentage})`;
+  export const TranslateY = (lengthOrPercentage: string) => `translateX(${lengthOrPercentage})`;
+  export const TranslateZ = (length: string) => `translateX(${length})`;
   // tslint:disable-next-line:object-literal-sort-keys
-  translate3d: (lengthOrPercentageX: string, lengthOrPercentageY: string, lengthZ: string) =>
-    `translate3d(${lengthOrPercentageX}, ${lengthOrPercentageY}, ${lengthZ})`,
+  export const Translate3d = (lengthOrPercentageX: string, lengthOrPercentageY: string, lengthZ: string) =>
+    `translate3d(${lengthOrPercentageX}, ${lengthOrPercentageY}, ${lengthZ})`;
 
-  scale: (n: number, ...numbers: number[]) =>
-    `scale(${[n, ...numbers].join(", ")})`,
-  scaleX: (n: number) => `scaleX(${n})`,
-  scaleY: (n: number) => `scaleX(${n})`,
-  scaleZ: (n: number) => `scaleX(${n})`,
-  scale3d: (numberX: number, numberY: number, numberZ: number) =>
-    `scale3d(${numberX}, ${numberY}, ${numberZ})`,
+  export const Scale = (n: number, ...numbers: number[]) =>
+    `scale(${[n, ...numbers].join(", ")})`;
+  export const ScaleX = (n: number) => `scaleX(${n})`;
+  export const ScaleY = (n: number) => `scaleX(${n})`;
+  export const ScaleZ = (n: number) => `scaleX(${n})`;
+  export const Scale3d = (numberX: number, numberY: number, numberZ: number) =>
+    `scale3d(${numberX}, ${numberY}, ${numberZ})`;
 
-  rotate: (angle: string) => `rotate(${angle})`,
-  rotateX: (angle: string) => `rotateX(${angle})`,
-  rotateY: (angle: string) => `rotateX(${angle})`,
-  rotateZ: (angle: string) => `rotateX(${angle})`,
-  rotate3d: (xAmount: number, yAmount: number, zAmount: number, angle: string) =>
-    `rotate3d(${xAmount}, ${yAmount}, ${zAmount}, ${angle})`,
+  export const Rotate = (angle: string) => `rotate(${angle})`;
+  export const RotateX = (angle: string) => `rotateX(${angle})`;
+  export const RotateY = (angle: string) => `rotateX(${angle})`;
+  export const RotateZ = (angle: string) => `rotateX(${angle})`;
+  export const Rotate3d = (xAmount: number, yAmount: number, zAmount: number, angle: string) =>
+    `rotate3d(${xAmount}, ${yAmount}, ${zAmount}, ${angle})`;
 
-  skew: (angleX: string, angleY: string) => `skew(${angleX}, ${angleY})`,
-  skewX: (angle: string) => `skewX(${angle})`,
-  skewY: (angle: string) => `skewY(${angle})`,
+  export const Skew = (angleX: string, angleY: string) => `skew(${angleX}, ${angleY})`;
+  export const SkewX = (angle: string) => `skewX(${angle})`;
+  export const SkewY = (angle: string) => `skewY(${angle})`;
 
-  perspective: (length: string) => `perspective(${length})`,
-};
+  export const Perspective = (length: string) => `perspective(${length})`;
+}
 
 export const transformList = SpaceSeparatedList;
 
@@ -47,6 +48,4 @@ export interface TransformMixinProps {
   transform?: string;
 }
 
-export const transformMixin: FunctionMixin<TransformMixinProps> = ({ transform }: TransformMixinProps) => ({
-  transform,
-});
+export const transformMixin: FunctionMixin<TransformMixinProps> = ({ transform }) => ({ transform });

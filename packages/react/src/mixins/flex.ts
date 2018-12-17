@@ -18,22 +18,15 @@ import {
   GlobalsNumber,
   JustifyContentProperty,
 } from "csstype";
-import { Mixin } from "./mixin";
+import tuple from "../util/tuple";
+import { FunctionMixin } from "./mixin";
 
 /** Declarations */
 
-export const flexPropsKeys = Object.freeze([
-  "child",
-  "inline",
-  "direction",
-  "wrap",
-  "justify",
-  "alignContent",
-  "align",
-  "alignSelf",
-  "flex",
-  "order",
-]);
+export const flexPropsKeys = tuple<
+  ["child", "inline", "direction", "wrap", "justify", "alignContent", "align", "alignSelf", "flex", "order"]
+>("child", "inline", "direction", "wrap", "justify", "alignContent", "align", "alignSelf", "flex", "order");
+Object.freeze(flexPropsKeys);
 
 export interface FlexProps<TLength = string> {
   child?: boolean;
@@ -54,7 +47,7 @@ export interface FlexProps<TLength = string> {
   shrink?: GlobalsNumber;
 }
 
-export const flexBoxMixin: Mixin<FlexProps> = ({
+export const flexBoxMixin: FunctionMixin<FlexProps> = ({
   child,
   inline,
 

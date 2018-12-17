@@ -1,5 +1,5 @@
 import { OverflowProperty, OverflowXProperty, OverflowYProperty } from "csstype";
-import { overflowMixin, OverflowProps } from "../mixins";
+import { overflowMixin, OverflowMixinProps } from "../mixins";
 import { augment } from "../util";
 import { Box } from "./Box";
 
@@ -76,7 +76,7 @@ export const AspectRatioContainer = augment<typeof RelativePositionedContainer, 
 // Overflow containers
 //
 
-export const OverflowContainer = augment<typeof Box, OverflowProps>({
+export const OverflowContainer = augment<typeof Box, OverflowMixinProps>({
   component: Box,
   defaultProps: {
     overflow: "auto",

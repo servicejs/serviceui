@@ -3,9 +3,9 @@
  */
 
 import { selectFirstDefined } from "../util";
-import { Mixin } from "./mixin";
+import { FunctionMixin } from "./mixin";
 
-export interface SafeAreaProps {
+export interface SafeAreaMixinProps {
   l?: boolean;
   r?: boolean;
   t?: boolean;
@@ -17,7 +17,7 @@ export interface SafeAreaProps {
 
 export const safeAreaBasePropsKeys = Object.freeze(["l", "r", "t", "b", "x", "y", "all"]);
 
-export const safeAreaMixin: Mixin<SafeAreaProps> = ({ l, r, t, b, x, y, all }: SafeAreaProps) => ({
+export const safeAreaMixin: FunctionMixin<SafeAreaMixinProps> = ({ l, r, t, b, x, y, all }) => ({
   paddingBottom: selectFirstDefined(b, y, all) ? "env(safe-area-inset-bottom)" : undefined,
   paddingLeft: selectFirstDefined(l, x, all) ? "env(safe-area-inset-left)" : undefined,
   paddingRight: selectFirstDefined(r, x, all) ? "env(safe-area-inset-right)" : undefined,

@@ -4,13 +4,13 @@
 
 /** Imports */
 
-import { safeAreaMixin, SafeAreaProps } from "../mixins";
+import { safeAreaMixin, SafeAreaMixinProps } from "../mixins";
 import { augment } from "../util";
 import { Box } from "./Box";
 
 /** Declarations */
 
-export const SafeArea = augment<typeof Box, SafeAreaProps>({
+export const SafeArea = augment<typeof Box, SafeAreaMixinProps>({
   component: Box,
   mixin: safeAreaMixin,
 });

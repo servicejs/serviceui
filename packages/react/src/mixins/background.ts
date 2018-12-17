@@ -1,5 +1,5 @@
 import { CommaSeparatedList } from "../util";
-import { Mixin } from "./mixin";
+import { FunctionMixin } from "./mixin";
 
 export const backgroundList = CommaSeparatedList;
 
@@ -7,6 +7,6 @@ export interface BackgroundShorthandProps {
   bg?: string | string[];
 }
 
-export const backgroundMixin: Mixin<BackgroundShorthandProps> = ({ bg }) => ({
+export const backgroundMixin: FunctionMixin<BackgroundShorthandProps> = ({ bg }) => ({
   background: bg ? (Array.isArray(bg) ? backgroundList(bg) : bg) : undefined,
 });

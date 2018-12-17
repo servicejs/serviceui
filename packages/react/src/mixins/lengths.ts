@@ -3,6 +3,8 @@ import {
   BottomProperty,
   HeightProperty,
   LeftProperty,
+  MaxHeightProperty,
+  MaxWidthProperty,
   MinHeightProperty,
   MinWidthProperty,
   OutlineOffsetProperty,
@@ -13,7 +15,7 @@ import {
   WidthProperty,
 } from "csstype";
 import { selectFirstDefined } from "../util/select-first";
-import { Mixin } from "./mixin";
+import { FunctionMixin } from "./mixin";
 
 export const stringOrNumberScale = (scale: (value: number) => string = (x) => `${x}px`) => (value: string | number) =>
   typeof value === "number" ? scale(value) : value;
@@ -35,7 +37,7 @@ export interface PaddingShorthandProps {
   p?: string | number;
 }
 
-export const paddingMixin: Mixin<PaddingShorthandProps> = ({
+export const paddingMixin: FunctionMixin<PaddingShorthandProps> = ({
   pl,
   pr,
   pt,
@@ -70,7 +72,7 @@ export interface MarginShorthandProps {
   m?: string | number;
 }
 
-export const marginMixin: Mixin<MarginShorthandProps> = ({
+export const marginMixin: FunctionMixin<MarginShorthandProps> = ({
   ml,
   mr,
   mt,
@@ -96,22 +98,22 @@ export const marginMixin: Mixin<MarginShorthandProps> = ({
 //
 
 export interface BorderWidthShorthandProps {
-  blw?: string | number;
-  brw?: string | number;
-  btw?: string | number;
-  bbw?: string | number;
-  bxw?: string | number;
-  byw?: string | number;
+  bwl?: string | number;
+  bwr?: string | number;
+  bwt?: string | number;
+  bwb?: string | number;
+  bwx?: string | number;
+  bwy?: string | number;
   bw?: string | number;
 }
 
-export const borderWidthMixin: Mixin<BorderWidthShorthandProps> = ({
-  blw,
-  brw,
-  btw,
-  bbw,
-  bxw,
-  byw,
+export const borderWidthMixin: FunctionMixin<BorderWidthShorthandProps> = ({
+  bwl,
+  bwr,
+  bwt,
+  bwb,
+  bwx,
+  bwy,
   bw,
 
   theme,
@@ -120,10 +122,10 @@ export const borderWidthMixin: Mixin<BorderWidthShorthandProps> = ({
   return {
     borderWidth: scale(bw),
 
-    borderBottomWidth: scale(selectFirstDefined(bbw, byw)),
-    borderLeftWidth: scale(selectFirstDefined(blw, bxw)),
-    borderRightWidth: scale(selectFirstDefined(brw, bxw)),
-    borderTopWidth: scale(selectFirstDefined(btw, byw)),
+    borderBottomWidth: scale(selectFirstDefined(bwb, bwy)),
+    borderLeftWidth: scale(selectFirstDefined(bwl, bwx)),
+    borderRightWidth: scale(selectFirstDefined(bwr, bwx)),
+    borderTopWidth: scale(selectFirstDefined(bwt, bwy)),
   };
 };
 
@@ -141,7 +143,7 @@ export interface BorderStyleShorthandProps {
   bs?: BorderStyleProperty;
 }
 
-export const borderStyleMixin: Mixin<BorderStyleShorthandProps> = ({ bsl, bsr, bst, bsb, bsx, bsy, bs }) =>
+export const borderStyleMixin: FunctionMixin<BorderStyleShorthandProps> = ({ bsl, bsr, bst, bsb, bsx, bsy, bs }) =>
   ({
     borderStyle: bs,
 
@@ -163,7 +165,7 @@ export interface BorderRadiusShorthandProps {
   brbr?: string | number;
 }
 
-export const borderRadiusMixin: Mixin<BorderRadiusShorthandProps> = ({ br, brtl, brtr, brbl, brbr, theme }) => {
+export const borderRadiusMixin: FunctionMixin<BorderRadiusShorthandProps> = ({ br, brtl, brtr, brbl, brbr, theme }) => {
   const scale = maybe(stringOrNumberScale(theme.scale));
   return {
     borderRadius: scale(br),
@@ -183,7 +185,7 @@ export interface OutlineWidthShorthandProps<TLength = string> {
   ow?: OutlineWidthProperty<TLength>;
 }
 
-export const outlineWidthMixin: Mixin<OutlineWidthShorthandProps> = ({ ow, theme }) => ({
+export const outlineWidthMixin: FunctionMixin<OutlineWidthShorthandProps> = ({ ow, theme }) => ({
   outlineWidth: ow,
 });
 
@@ -195,7 +197,9 @@ export interface OutlineOffsetShorthandProps<TLength = string> {
   oo?: OutlineOffsetProperty<TLength>;
 }
 
-export const outlineOffsetMixin: Mixin<OutlineOffsetShorthandProps> = ({ oo, theme }) => ({ outlineOffset: oo });
+export const outlineOffsetMixin: FunctionMixin<OutlineOffsetShorthandProps> = ({ oo, theme }) => ({
+  outlineOffset: oo,
+});
 
 //
 // Outline style
@@ -205,7 +209,7 @@ export interface OutlineStyleShorthandProps {
   os?: OutlineStyleProperty;
 }
 
-export const outlineStyleMixin: Mixin<OutlineStyleShorthandProps> = ({ os, theme }) => ({
+export const outlineStyleMixin: FunctionMixin<OutlineStyleShorthandProps> = ({ os, theme }) => ({
   outlineStyle: os,
 });
 
@@ -217,7 +221,7 @@ export interface WidthMixinProps<TLength = string> {
   w?: number | WidthProperty<TLength>;
 }
 
-export const widthMixin: Mixin<WidthMixinProps> = ({ w, theme }) => ({
+export const widthMixin: FunctionMixin<WidthMixinProps> = ({ w, theme }) => ({
   width: maybe(stringOrNumberScale(theme.scale))(w),
 });
 
@@ -229,7 +233,7 @@ export interface HeightMixinProps<TLength = string> {
   h?: number | HeightProperty<TLength>;
 }
 
-export const heightMixin: Mixin<HeightMixinProps> = ({ h, theme }) => ({
+export const heightMixin: FunctionMixin<HeightMixinProps> = ({ h, theme }) => ({
   height: maybe(stringOrNumberScale(theme.scale))(h),
 });
 
@@ -238,11 +242,23 @@ export const heightMixin: Mixin<HeightMixinProps> = ({ h, theme }) => ({
 //
 
 export interface MinWidthMixinProps<TLength = string> {
-  mw?: number | MinWidthProperty<TLength>;
+  minWidth?: number | MinWidthProperty<TLength>;
 }
 
-export const minWidthMixin: Mixin<MinWidthMixinProps> = ({ mw, theme }) => ({
-  minWidth: maybe(stringOrNumberScale(theme.scale))(mw),
+export const minWidthMixin: FunctionMixin<MinWidthMixinProps> = ({ minWidth, theme }) => ({
+  minWidth: maybe(stringOrNumberScale(theme.scale))(minWidth),
+});
+
+//
+// Max-width
+//
+
+export interface MaxWidthMixinProps<TLength = string> {
+  maxWidth?: number | MaxWidthProperty<TLength>;
+}
+
+export const maxWidthMixin: FunctionMixin<MaxWidthMixinProps> = ({ maxWidth, theme }) => ({
+  maxWidth: maybe(stringOrNumberScale(theme.scale))(maxWidth),
 });
 
 //
@@ -250,11 +266,23 @@ export const minWidthMixin: Mixin<MinWidthMixinProps> = ({ mw, theme }) => ({
 //
 
 export interface MinHeightMixinProps<TLength = string> {
-  mh?: number | MinHeightProperty<TLength>;
+  minHeight?: number | MinHeightProperty<TLength>;
 }
 
-export const minHeightMixin: Mixin<MinHeightMixinProps> = ({ mh, theme }) => ({
-  minHeight: maybe(stringOrNumberScale(theme.scale))(mh),
+export const minHeightMixin: FunctionMixin<MinHeightMixinProps> = ({ minHeight, theme }) => ({
+  minHeight: maybe(stringOrNumberScale(theme.scale))(minHeight),
+});
+
+//
+// Max-height
+//
+
+export interface MaxHeightMixinProps<TLength = string> {
+  maxHeight?: number | MaxHeightProperty<TLength>;
+}
+
+export const maxHeightMixin: FunctionMixin<MaxHeightMixinProps> = ({ maxHeight, theme }) => ({
+  maxHeight: maybe(stringOrNumberScale(theme.scale))(maxHeight),
 });
 
 //
@@ -268,7 +296,7 @@ export interface PositionMixinProps<TLength = string> {
   right?: number | RightProperty<TLength>;
 }
 
-export const positionMixin: Mixin<PositionMixinProps> = ({ top, bottom, left, right, theme }) => {
+export const positionMixin: FunctionMixin<PositionMixinProps> = ({ top, bottom, left, right, theme }) => {
   const scale = maybe(stringOrNumberScale(theme.scale));
   return { bottom: scale(bottom), left: scale(left), right: scale(right), top: scale(top) };
 };

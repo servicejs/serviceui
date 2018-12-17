@@ -29,7 +29,8 @@ import {
   JustifySelfProperty,
 } from "csstype";
 import { arrayWrapper } from "../util";
-import { Mixin } from "./mixin";
+import tuple from "../util/tuple";
+import { FunctionMixin } from "./mixin";
 
 // tslint:disable-next-line:no-empty-interface
 export interface GridProps<TLength = string> {
@@ -61,34 +62,21 @@ export interface GridProps<TLength = string> {
   re?: GridRowEndProperty;
   area?: GridAreaProperty;
 }
-
-export const gridPropsKeys = Object.freeze([
-  "inline",
-  "child",
-  "rows",
-  "cols",
-  "areas",
-  "autoCols",
-  "autoFlow",
-  "autoRows",
-  "gap",
-  "colGap",
-  "rowGap",
-  "justifyItems",
-  "justifyContent",
-  "justifySelf",
-  "alignItems",
-  "alignContent",
-  "alignSelf",
-  "cs",
-  "ce",
-  "rs",
-  "re",
+// prettier-ignore
+export const gridPropsKeys = tuple<[
+  "inline", "child", "rows", "cols", "areas", "autoCols", "autoFlow", "autoRows", "gap", "colGap", "rowGap",
+  "justifyItems", "justifyContent", "justifySelf", "alignItems", "alignContent", "alignSelf", "cs", "ce", "rs", "re",
+  "area"
+]>(
+  "inline", "child", "rows", "cols", "areas", "autoCols", "autoFlow", "autoRows", "gap", "colGap", "rowGap",
+  "justifyItems", "justifyContent", "justifySelf", "alignItems", "alignContent", "alignSelf", "cs", "ce", "rs", "re",
   "area",
-]);
+);
+
+Object.freeze(gridPropsKeys);
 
 // prettier-ignore
-export const gridMixin: Mixin<GridProps> = ({
+export const gridMixin: FunctionMixin<GridProps> = ({
   inline,
   child,
   rows,
