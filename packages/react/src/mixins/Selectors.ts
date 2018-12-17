@@ -27,6 +27,12 @@ namespace Selectors {
   // tslint:disable-next-line:no-shadowed-variable
   export const Selector = (sel: string) => sel;
 
+  /** Element with ID */
+  export const Id = (id: string) => `#${id}`;
+
+  /** Element with class */
+  export const Class = (cls: string) => `.${cls}`;
+
   /** Children */
   export function Children(): string;
   export function Children(children: string): string;
@@ -208,7 +214,7 @@ namespace Selectors {
     export const Checked = ":checked";
     export const Default = ":default";
     export const Defined = ":defined";
-    export const Dir = ":dir";
+    export const Dir = (dir: "ltr" | "rtl") => `:dir(${dir})`;
     export const Disabled = ":disabled";
     export const Empty = ":empty";
     export const Enabled = ":enabled";
@@ -220,24 +226,24 @@ namespace Selectors {
     export const Focus = ":focus";
     export const FocusWithin = ":focus-within";
     export const Fullscreen = ":fullscreen";
-    export const Has = ":has";
-    export const Host = ":host";
-    export const HostContext = ":host-context";
+    export const Has = (selector: string) => `:has(${selector})`;
+    export const Host = (selector: string) => `:host(${selector})`;
+    export const HostContext = (selector: string) => `:host-context(${selector})`;
     export const Hover = ":hover";
     export const InRange = ":in-range";
     export const Indeterminate = ":indeterminate";
     export const Invalid = ":invalid";
-    export const Is = ":is";
-    export const Lang = ":lang";
+    export const Is = (selector: string) => `:is(${selector})`;
+    export const Lang = (language: string) => `:lang(${language})`;
     export const LastChild = ":last-child";
     export const LastOfType = ":last-of-type";
     export const Left = ":left";
     export const Link = ":link";
-    export const Not = ":not";
-    export const NthChild = ":nth-child";
-    export const NthLastChild = ":nth-last-child";
-    export const NthLastOfType = ":nth-last-of-type";
-    export const NthOfType = ":nth-of-type";
+    export const Not = (selector: string) => `:not(${selector})`;
+    export const NthChild = (n: number) => `:nth-child${n}`;
+    export const NthLastChild = (n: number) => `:nth-last-child(${n})`;
+    export const NthLastOfType = (n: number) => `:nth-last-of-type(${n})`;
+    export const NthOfType = (n: number) => `:nth-of-type(${n})`;
     export const OnlyChild = ":only-child";
     export const OnlyOfType = ":only-of-type";
     export const Optional = ":optional";
@@ -252,7 +258,7 @@ namespace Selectors {
     export const Target = ":target";
     export const Valid = ":valid";
     export const Visited = ":visited";
-    export const Where = ":where";
+    export const Where = (selector: string) => `:where(${selector})`;
   }
 }
 
