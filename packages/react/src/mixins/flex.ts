@@ -2,15 +2,20 @@
  * Flexbox mixins
  */
 
+// tslint:disable:object-literal-sort-keys
+
 /** Imports */
 
 import {
   AlignContentProperty,
   AlignItemsProperty,
   AlignSelfProperty,
+  FlexBasisProperty,
   FlexDirectionProperty,
+  FlexFlowProperty,
   FlexProperty,
   FlexWrapProperty,
+  GlobalsNumber,
   JustifyContentProperty,
 } from "csstype";
 import { Mixin } from "./mixin";
@@ -30,40 +35,58 @@ export const flexPropsKeys = Object.freeze([
   "order",
 ]);
 
-export interface FlexProps {
+export interface FlexProps<TLength = string> {
   child?: boolean;
   inline?: boolean;
+
   direction?: FlexDirectionProperty;
   wrap?: FlexWrapProperty;
-  justify?: JustifyContentProperty;
-  align?: AlignItemsProperty;
+  flow?: FlexFlowProperty;
+  justifyContent?: JustifyContentProperty;
+  alignItems?: AlignItemsProperty;
   alignContent?: AlignContentProperty;
 
   alignSelf?: AlignSelfProperty;
-  flex?: FlexProperty<string>;
+  basis?: FlexBasisProperty<TLength>;
+  flex?: FlexProperty<TLength>;
+  grow?: GlobalsNumber;
   order?: number;
+  shrink?: GlobalsNumber;
 }
 
 export const flexBoxMixin: Mixin<FlexProps> = ({
   child,
   inline,
+
   direction: flexDirection,
-  alignContent,
-  align: alignItems,
-  alignSelf,
-  flex,
-  justify: justifyContent,
-  order,
   wrap: flexWrap,
+  flow: flexFlow,
+  justifyContent,
+  alignItems,
+  alignContent,
+
+  alignSelf,
+  basis: flexBasis,
+  flex,
+  grow: flexGrow,
+  order,
+  shrink: flexShrink,
 }: FlexProps) => ({
   display: child ? undefined : inline ? "inline-flex" : "flex",
 
-  alignContent,
-  alignItems,
-  alignSelf,
-  flex,
+  flexFlow,
   flexDirection,
   flexWrap,
+
   justifyContent,
+  alignItems,
+  alignContent,
+
+  alignSelf,
   order,
+
+  flex,
+  flexBasis,
+  flexGrow,
+  flexShrink,
 });
