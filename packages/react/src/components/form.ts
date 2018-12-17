@@ -34,7 +34,7 @@ export const Label = augment({
   defaultProps: {
     as: "label",
   },
-  displayName: "Legend",
+  displayName: "Label",
 }) as StyledComponent<PropsType<"label"> & BoxProps, {}, any>;
 
 export const Input = augment({
