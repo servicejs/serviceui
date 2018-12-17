@@ -2,6 +2,7 @@
  * Mixins
  */
 
+export { default as AnimatableProperties } from "./AnimatableProperties";
 export * from "./animation";
 export * from "./background";
 export * from "./box-shadow";
@@ -19,5 +20,6 @@ export * from "./pseudo-selectors";
 export * from "./safe-area";
 export * from "./separate";
 export * from "./text-shadow";
+export { default as TimingFunctions } from "./TimingFunctions";
 export * from "./transform";
 export * from "./transition";

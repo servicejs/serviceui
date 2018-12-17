@@ -1,4 +1,4 @@
-import { arrayOrElementToArray, CommaSeparatedList } from "../util";
+import { CommaSeparatedList } from "../util";
 import { Mixin } from "./mixin";
 
 export const backgroundList = CommaSeparatedList;
@@ -8,5 +8,5 @@ export interface BackgroundShorthandProps {
 }
 
 export const backgroundMixin: Mixin<BackgroundShorthandProps> = ({ bg }) => ({
-  background: bg ? arrayOrElementToArray(bg) : undefined,
+  background: bg ? (Array.isArray(bg) ? backgroundList(bg) : bg) : undefined,
 });

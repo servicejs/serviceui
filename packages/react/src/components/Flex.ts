@@ -17,7 +17,7 @@ export const Flex = augment<typeof Box, FlexProps>({
 
 export const FlexRow = augment<typeof Flex, {}>({
   component: Flex,
-  defaultProps: { align: "center", direction: "row" },
+  defaultProps: { alignItems: "center", direction: "row" },
   displayName: "FlexRow",
 });
 

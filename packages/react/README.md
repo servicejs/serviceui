@@ -66,6 +66,7 @@ const exampleTheme = new ExampleTheme();
  */
 const App = ({ theme }: { theme?: ExampleTheme }) => (
     <Box bg={theme!.colors.black} c={theme!.colors.white}>
+        <Text>Hello World</Text>
         <Text dir="ltr">Hello World with direction LTR in red</Text>
         <Text dir="rtl">Hello World with direction RTL in green</Text>
     </Box>

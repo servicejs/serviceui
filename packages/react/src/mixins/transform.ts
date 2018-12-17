@@ -1,8 +1,9 @@
 import { SpaceSeparatedList } from "../util";
+import { FunctionMixin } from "./mixin";
 
 // From https://developer.mozilla.org/en-US/docs/Web/CSS/transform
 // prettier-ignore
-export const cssTransforms = {
+export const Transforms = {
   matrix: (...sixNumbers: [number, number, number, number, number, number]) =>
     `matrix(${sixNumbers.map((n) => n.toString()).join(",")})`,
   // tslint:disable-next-line:max-line-length
@@ -42,6 +43,10 @@ export const cssTransforms = {
 
 export const transformList = SpaceSeparatedList;
 
-export const transformMixin = (...values: string[]) => ({
-  transform: transformList(...values),
+export interface TransformMixinProps {
+  transform?: string;
+}
+
+export const transformMixin: FunctionMixin<TransformMixinProps> = ({ transform }: TransformMixinProps) => ({
+  transform,
 });

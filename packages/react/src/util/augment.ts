@@ -11,8 +11,8 @@ import { Omit, Overwrapped } from "@emotion/styled-base/types/helper";
 import { ComponentType } from "react";
 import { Mixin } from "../mixins";
 import { themed } from "../theme";
-import { ArrayOrElement } from "./ArrayOrElement";
 import { PropsType } from "./PropsType";
+import zeroOrManyToArray, { ZeroOrOneOrMany } from "./zero-one-many";
 
 /**
  * Named parameter values for `augment()`
@@ -30,7 +30,7 @@ export interface AugmentProps<
   themeKey?: string | null | undefined;
   displayName?: string | undefined;
   defaultProps?: StyledComponent<PropsType<Component>, StyleProps, ThemeType>["defaultProps"];
-  mixin?: ArrayOrElement<Mixin<StyleProps, ThemeType>>;
+  mixin?: Mixin<StyleProps, ThemeType> | Array<Mixin<StyleProps, ThemeType>>;
 }
 type ReactClassPropKeys = keyof React.ClassAttributes<any>;
 
@@ -48,6 +48,8 @@ export function augment<
   ThemeType extends object = any,
   A extends AugmentProps<Component, StyleProps, ThemeType> = AugmentProps<Component, StyleProps, ThemeType>
 >({ component, options, themeKey, defaultProps = {}, displayName, mixin = [] }: A) {
+  // Determine displayName & theme key
+
   if (displayName) {
     if (typeof themeKey === "undefined") {
       themeKey = displayName;
@@ -61,8 +63,10 @@ export function augment<
     }
   }
 
-  mixin = Array.isArray(mixin) ? mixin : [mixin];
+  // Convert mixins to a regular array
+  const mixins = zeroOrManyToArray<any>(mixin);
 
+  // Determine if the base component is an emotion styled component
   const isEmotionComponent =
     typeof component === "object" &&
     (typeof (component as any).__emotion_base !== "undefined" ||
@@ -70,8 +74,11 @@ export function augment<
       typeof (component as any).__emotion_real !== "undefined" ||
       typeof (component as any).__emotion_styles !== "undefined");
 
-  // console.log(isEmotionComponent, component, typeof component);
-
+  // If it is an emotion component, wrap it in an identity function
+  // that just forwards the props to prevent the component hierarchy
+  // from collapsing
+  //
+  // Additionally, set the displayName of the parent, if it is not set
   let unstyledComponent: any;
   if (isEmotionComponent) {
     unstyledComponent = (props: any) => jsx(component, props);
@@ -84,13 +91,16 @@ export function augment<
     }
   }
 
+  // Create the new component
   const newComponent = (styled as CreateStyled<ThemeType>)(unstyledComponent as any, options)<StyleProps>(
-    ...(mixin as any[]),
+    ...(mixins as any[]),
     themeKey ? themed(themeKey) : {},
   );
 
+  // Set the new component's displayName
   newComponent.displayName = displayName;
 
+  // Set the default props of the new component
   newComponent.defaultProps = {
     // prettier-ignore
     ...(typeof component === "string" || typeof (component as ComponentType<any>).defaultProps !== "object"
@@ -98,5 +108,8 @@ export function augment<
       : (component as ComponentType<any>).defaultProps!),
     ...(defaultProps as object),
   } as any;
+
   return newComponent as StyledComponent<PropsType<Component>, StyleProps, ThemeType>;
 }
+
+export default augment;

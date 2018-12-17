@@ -6,6 +6,8 @@ import isPropValid from "@emotion/is-prop-valid";
 import { StyledComponent } from "@emotion/styled";
 
 import {
+  animationMixin,
+  AnimationMixinProps,
   backgroundMixin,
   BackgroundShorthandProps,
   borderColorMixin,
@@ -20,8 +22,14 @@ import {
   BoxShadowShorthandProps,
   colorMixin,
   ColorShorthandProps,
+  heightMixin,
+  HeightMixinProps,
   marginMixin,
   MarginShorthandProps,
+  minHeightMixin,
+  MinHeightMixinProps,
+  minWidthMixin,
+  MinWidthMixinProps,
   outlineColorMixin,
   OutlineColorShorthandProps,
   outlineOffsetMixin,
@@ -33,7 +41,15 @@ import {
   paddingMixin,
   PaddingShorthandProps,
   positionMixin,
-  PositionShorthandProps,
+  PositionMixinProps,
+  positionPropertyMixin,
+  PositionPropertyMixinProps,
+  transformMixin,
+  TransformMixinProps,
+  transitionMixin,
+  TransitionMixinProps,
+  widthMixin,
+  WidthMixinProps,
 } from "../mixins";
 import { augment, PropsType } from "../util";
 import { BaseProps, Empty } from "./Empty";
@@ -59,7 +75,17 @@ export interface BoxProps
     // Positioning
     PaddingShorthandProps,
     MarginShorthandProps,
-    PositionShorthandProps {}
+    PositionMixinProps,
+    PositionPropertyMixinProps,
+    // Size
+    MinWidthMixinProps,
+    MinHeightMixinProps,
+    HeightMixinProps,
+    WidthMixinProps,
+    // Transform, Transition, Animation
+    TransformMixinProps,
+    TransitionMixinProps,
+    AnimationMixinProps {}
 
 export const Box = augment<typeof Empty, BoxProps>({
   component: Empty,
@@ -88,6 +114,16 @@ export const Box = augment<typeof Empty, BoxProps>({
     paddingMixin,
     marginMixin,
     positionMixin,
+    positionPropertyMixin,
+    // Size
+    minWidthMixin,
+    minHeightMixin,
+    widthMixin,
+    heightMixin,
+    // Transform, Transition, Animation
+    transformMixin,
+    transitionMixin,
+    animationMixin,
   ],
   options: {
     shouldForwardProp: (name) => name !== "as" && isPropValid(name),

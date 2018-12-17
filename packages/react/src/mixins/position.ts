@@ -1,7 +1,7 @@
 import { PositionProperty } from "csstype";
 
-export interface PositionShorthandProps {
+export interface PositionPropertyMixinProps {
   position?: PositionProperty;
 }
 
-export const positionMixin = ({ position }: PositionShorthandProps) => ({ position });
+export const positionPropertyMixin = ({ position }: PositionPropertyMixinProps) => ({ position });
