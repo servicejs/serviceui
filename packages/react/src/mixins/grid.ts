@@ -28,6 +28,7 @@ import {
   JustifyItemsProperty,
   JustifySelfProperty,
 } from "csstype";
+import { arrayWrapper } from "../util";
 import { Mixin } from "./mixin";
 
 // tslint:disable-next-line:no-empty-interface
@@ -140,3 +141,5 @@ export const gridMixin: Mixin<GridProps> = ({
   alignContent,
   alignSelf,
 });
+
+export const gridAreas = arrayWrapper((...areas: string[][]) => areas.map((rows) => `"${rows.join(" ")}"`).join("\n"));
