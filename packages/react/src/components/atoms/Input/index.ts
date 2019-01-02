@@ -13,7 +13,7 @@ const Input = augment({
     as: "input",
   },
   displayName: "Input",
-}) as StyledComponent<PropsType<"input"> & Box.Props, { children: never }, any>;
+}) as StyledComponent<PropsType<"input"> & Box.Props, { children?: never }, any>;
 
 namespace Input {
   export type Props = PropsType<typeof Input>;
