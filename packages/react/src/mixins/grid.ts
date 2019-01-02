@@ -28,7 +28,7 @@ import {
   JustifyItemsProperty,
   JustifySelfProperty,
 } from "csstype";
-import { arrayWrapper } from "../util";
+import arrayWrapper from "../util/arrayWrapper";
 import tuple from "../util/tuple";
 import { FunctionMixin } from "./mixin";
 
@@ -89,7 +89,7 @@ export const gridMixin: FunctionMixin<GridProps> = ({
   colGap: gridColumnGap,
   rowGap: gridRowGap,
 
-  area: gridArea,
+  area: theGridArea,
   ce: gridColumnEnd,
   cs: gridColumnStart,
   re: gridRowEnd,
@@ -116,7 +116,7 @@ export const gridMixin: FunctionMixin<GridProps> = ({
   gridColumnGap,
   gridRowGap,
 
-  gridArea,
+  gridArea: theGridArea,
   gridColumnStart,
   gridColumnEnd,
   gridRowStart,
@@ -130,4 +130,4 @@ export const gridMixin: FunctionMixin<GridProps> = ({
   alignSelf,
 });
 
-export const gridAreas = arrayWrapper((...areas: string[][]) => areas.map((rows) => `"${rows.join(" ")}"`).join("\n"));
+export const gridArea = arrayWrapper((...areas: string[][]) => areas.map((rows) => `"${rows.join(" ")}"`).join("\n"));

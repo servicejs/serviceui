@@ -1,4 +1,4 @@
-import { SpaceSeparatedList } from "../util";
+import { SpaceSeparatedList } from "../util/css-value-helpers";
 import { FunctionMixin } from "./mixin";
 
 // From https://developer.mozilla.org/en-US/docs/Web/CSS/transform

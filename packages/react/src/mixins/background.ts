@@ -1,4 +1,4 @@
-import { CommaSeparatedList } from "../util";
+import { CommaSeparatedList } from "../util/css-value-helpers";
 import { FunctionMixin } from "./mixin";
 
 export const backgroundList = CommaSeparatedList;

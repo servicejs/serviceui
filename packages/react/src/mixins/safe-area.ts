@@ -2,7 +2,7 @@
  * SafeArea mixin
  */
 
-import { selectFirstDefined } from "../util";
+import { selectFirstDefined } from "../util/select-first";
 import { FunctionMixin } from "./mixin";
 
 export interface SafeAreaMixinProps {

@@ -40,6 +40,8 @@ import {
   safeAreaMixin,
   SafeAreaX,
   separateChildrenXMixin,
+  Text,
+  TextBlock,
   TimingFunctions,
   transition,
   Video,
@@ -91,6 +93,8 @@ class App extends Component<{ theme?: SampleTheme }> {
               <Paragraph>
                 <Lorem />
               </Paragraph>
+              <TextBlock>XXX</TextBlock>
+              <Text>XXX</Text>
               <MathJax.Provider>
                 <MathJax.Node formula={tex} />
               </MathJax.Provider>

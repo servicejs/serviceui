@@ -3,7 +3,7 @@
  */
 
 import { BorderColorProperty, FillProperty, OutlineColorProperty, StrokeProperty } from "csstype";
-import { selectFirstDefined } from "../util";
+import { selectFirstDefined } from "../util/select-first";
 import { FunctionMixin } from "./mixin";
 
 export interface ColorShorthandProps {

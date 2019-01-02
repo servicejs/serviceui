@@ -7,7 +7,7 @@
 /** Imports */
 
 import { css } from "@emotion/core";
-import { FontList } from "../util";
+import { FontList } from "../util/css-value-helpers";
 
 /** Declarations */
 

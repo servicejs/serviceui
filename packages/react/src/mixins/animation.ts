@@ -2,7 +2,8 @@
  * Animation property helpers
  */
 
-import { arrayWrapper, CommaSeparatedList } from "../util";
+import arrayWrapper from "../util/arrayWrapper";
+import { CommaSeparatedList } from "../util/css-value-helpers";
 import { FunctionMixin } from "./mixin";
 
 /**

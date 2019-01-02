@@ -5,7 +5,7 @@
 /** Imports */
 
 import { BoxShadowProperty } from "csstype";
-import { CommaSeparatedList } from "../util";
+import { CommaSeparatedList } from "../util/css-value-helpers";
 import { Mixin } from "./mixin";
 
 /** Declarations */

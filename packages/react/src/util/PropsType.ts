@@ -15,3 +15,5 @@ export type PropsType<T> = T extends ComponentType<any>
   : T extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[T]
   : never;
+
+export default PropsType;
