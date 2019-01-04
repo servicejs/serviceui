@@ -54,7 +54,7 @@ import {
   TransitionMixinProps,
   widthMixin,
   WidthMixinProps,
-} from "../../../mixins";
+} from "@service-ui/mixins";
 
 import augment from "@service-ui/mixins/util/augment";
 import PropsType from "@service-ui/mixins/util/PropsType";
