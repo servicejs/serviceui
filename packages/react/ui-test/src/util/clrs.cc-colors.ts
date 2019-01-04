@@ -22,6 +22,7 @@ export const white = "#ffffff";
 
 export const clrsCcColors = {
   navy,
+  // tslint:disable-next-line:object-literal-sort-keys
   blue,
   aqua,
   teal,

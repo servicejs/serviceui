@@ -1,8 +1,10 @@
 {
   "editor.formatOnSave": true,
   "tslint.autoFixOnSave": true,
+  "editor.formatOnPaste": false,
   "markdownlint.config": {
     "list-marker-space": false
   },
-  "search.useIgnoreFiles": true
+  "search.useIgnoreFiles": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

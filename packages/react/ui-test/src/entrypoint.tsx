@@ -9,12 +9,12 @@ import { configure } from "mobx";
 import { Provider } from "mobx-react";
 import * as ReactDOM from "react-dom";
 import ErrorBoundary from "react-error-boundary";
+import { MobxThemeProvider } from "./MobxThemeProvider"; // mobx-emotion-theme-provider
 
-import { cssReset, fillScreenFlexReset, fillScreenReset, systemFontReset } from "../../src";
+import { cssReset, fillScreenFlexReset, fillScreenReset, systemFontReset } from "@service-ui/mixins";
 
 import { StrictMode } from "react";
 import App from "./app";
-import { MobxThemeProvider } from "./MobxThemeProvider";
 import { SampleTheme } from "./theme";
 
 const theme = new SampleTheme();

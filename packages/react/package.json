@@ -14,7 +14,8 @@
     "dev:build": "cd ui-test && yarn run dev",
     "gulp": "gulp",
     "build": "gulp",
-    "publish": "cd ./dist && yarn publish"
+    "publish": "cd ./dist && yarn publish",
+    "size": "size-limit"
   },
   "devDependencies": {
     "@types/del": "^3.0.1",
@@ -25,7 +26,7 @@
     "@types/gulp-rename": "^0.0.33",
     "@types/gulp-sourcemaps": "^0.0.32",
     "@types/prettier": "^1.13.2",
-    "@types/react": "^16.7.13",
+    "@types/react": "^16.7.18",
     "csstype": "^2.5.7",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
@@ -36,6 +37,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.3",
     "prettier": "^1.14.3",
+    "size-limit": "^0.21.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.1.6",
@@ -44,7 +46,14 @@
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "@emotion/styled": "^10.0.4",
+    "@service-ui/mixins": "^0.1.0",
     "emotion-theming": "^10.0.4",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.mjs",
+      "limit": "25 KB"
+    }
+  ]
 }
