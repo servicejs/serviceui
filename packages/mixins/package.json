@@ -1,0 +1,56 @@
+{
+  "name": "@service-ui/mixins",
+  "description": "CSS property helpers & mixins",
+  "version": "0.1.0",
+  "author": "Frédérique Mittelstaedt <npm@gfm.io> (https://www.gfm.io)",
+  "main": "dist/index",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "gulp": "gulp",
+    "build": "gulp",
+    "publish": "cd ./dist && yarn publish --access public",
+    "size": "size-limit"
+  },
+  "devDependencies": {
+    "@types/del": "^3.0.1",
+    "@types/gulp": "^4.0.5",
+    "@types/gulp-change": "^1.0.0",
+    "@types/gulp-debug": "^2.0.31",
+    "@types/gulp-if": "^0.0.33",
+    "@types/gulp-rename": "^0.0.33",
+    "@types/gulp-sourcemaps": "^0.0.32",
+    "@types/prettier": "^1.13.2",
+    "@types/react": "^16.7.18",
+    "csstype": "^2.5.7",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-change": "^1.0.0",
+    "gulp-debug": "^4.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "prettier": "^1.14.3",
+    "size-limit": "^0.21.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6",
+    "vinyl": "^2.2.0"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
+    "emotion-theming": "^10.0.5",
+    "react": "^16.7.0"
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "25 KB"
+    }
+  ]
+}
