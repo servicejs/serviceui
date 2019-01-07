@@ -8,6 +8,7 @@
 
 import { css } from "@emotion/core";
 
+import { tuple } from "./util";
 import { FontList } from "./util/css-value-helpers";
 
 /** Declarations */
@@ -151,23 +152,15 @@ export const fillScreenFlexReset = (rootElementSelector = "#root") => css`
   }
 `;
 
-export const systemFonts = [
-  "-apple-system",
-  "system-ui",
-  "BlinkMacSystemFont",
-  "Segoe UI",
-  "Roboto",
-  "Helvetica Neue",
-  "Oxygen-Sans",
-  "Ubuntu",
-  "Cantarell",
-  "Helvetica",
-  "Arial",
-  "sans-serif",
-  "Apple Color Emoji",
-  "Segoe UI Emoji",
-  "Segoe UI Symbol",
-];
+// prettier-ignore
+export const systemFonts = tuple<[
+  "-apple-system", "system-ui", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Oxygen-Sans", "Ubuntu",
+  "Cantarell", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+]>(
+  "-apple-system", "system-ui", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Oxygen-Sans", "Ubuntu",
+  "Cantarell", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+);
+Object.freeze(systemFonts);
 
 export const systemFontReset = (fonts: string = FontList(systemFonts)) => css`
   body {

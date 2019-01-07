@@ -2,35 +2,35 @@
  * Component augmentation function
  */
 
-/** Imports */
-
 import { jsx } from "@emotion/core";
 import styled, { StyledComponent, StyledOptions } from "@emotion/styled";
 import { CreateStyled } from "@emotion/styled-base";
 import { Omit, Overwrapped } from "@emotion/styled-base/types/helper";
 import { ComponentType } from "react";
-import { Mixin } from "../mixin";
-import { themed } from "../theme";
+import { Mixin } from "../Mixin";
+import { themed } from "../Theme";
 import { PropsType } from "./PropsType";
 import { zeroOrManyToArray } from "./zero-one-many";
 
-/**
- * Named parameter values for `augment()`
- */
-export interface AugmentProps<
-  Component extends keyof JSX.IntrinsicElements | ComponentType<any>,
-  StyleProps extends Omit<Overwrapped<PropsType<Component>, StyleProps>, ReactClassPropKeys> = Omit<
-    PropsType<Component>,
-    ReactClassPropKeys
-  >,
-  ThemeType extends object = any
-> {
-  component: Component;
-  options?: StyledOptions | undefined;
-  themeKey?: string | null | undefined;
-  displayName?: string | undefined;
-  defaultProps?: StyledComponent<PropsType<Component>, StyleProps, ThemeType>["defaultProps"];
-  mixin?: Mixin<StyleProps, ThemeType> | Array<Mixin<StyleProps, ThemeType>>;
+export namespace augment {
+  /**
+   * Named property argument map for `augment()`
+   */
+  export interface Props<
+    Component extends keyof JSX.IntrinsicElements | ComponentType<any>,
+    StyleProps extends Omit<Overwrapped<PropsType<Component>, StyleProps>, ReactClassPropKeys> = Omit<
+      PropsType<Component>,
+      ReactClassPropKeys
+    >,
+    ThemeType extends object = any
+  > {
+    component: Component;
+    options?: StyledOptions | undefined;
+    themeKey?: string | null | undefined;
+    displayName?: string | undefined;
+    defaultProps?: StyledComponent<PropsType<Component>, StyleProps, ThemeType>["defaultProps"];
+    mixin?: Mixin<StyleProps, ThemeType> | Array<Mixin<StyleProps, ThemeType>>;
+  }
 }
 type ReactClassPropKeys = keyof React.ClassAttributes<any>;
 
@@ -46,7 +46,7 @@ export function augment<
     ReactClassPropKeys
   >,
   ThemeType extends object = any,
-  A extends AugmentProps<Component, StyleProps, ThemeType> = AugmentProps<Component, StyleProps, ThemeType>
+  A extends augment.Props<Component, StyleProps, ThemeType> = augment.Props<Component, StyleProps, ThemeType>
 >({ component, options, themeKey, defaultProps = {}, displayName, mixin = [] }: A) {
   // Determine displayName & theme key
 

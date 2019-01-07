@@ -1,10 +1,14 @@
-import { SpaceSeparatedList } from "./util/css-value-helpers";
-import { FunctionMixin } from "./mixin";
+/**
+ * Transform property helpers & mixin
+ */
 
-// From https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+import { StaticFunctionMixin } from "./Mixin";
+import { SpaceSeparatedList } from "./util/css-value-helpers";
+
 // prettier-ignore
-// tslint:disable-next-line:no-namespace
-export namespace Transforms {
+namespace Transform {
+  // From https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+
   export const Matrix = (...sixNumbers: [number, number, number, number, number, number]) =>
     `matrix(${sixNumbers.map((n) => n.toString()).join(",")})`;
   // tslint:disable-next-line:max-line-length
@@ -40,12 +44,14 @@ export namespace Transforms {
   export const SkewY = (angle: string) => `skewY(${angle})`;
 
   export const Perspective = (length: string) => `perspective(${length})`;
+
+  export const list = SpaceSeparatedList;
+
+  export interface MixinProps {
+    transform?: string;
+  }
+
+  export const mixin: StaticFunctionMixin<Transform.MixinProps> = ({ transform }) => ({ transform });
 }
 
-export const transformList = SpaceSeparatedList;
-
-export interface TransformMixinProps {
-  transform?: string;
-}
-
-export const transformMixin: FunctionMixin<TransformMixinProps> = ({ transform }) => ({ transform });
+export default Transform;

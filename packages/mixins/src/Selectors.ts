@@ -24,14 +24,19 @@ namespace Selectors {
   }
 
   /** Specific HTML element */
-  // tslint:disable-next-line:no-shadowed-variable
-  export const Selector = (sel: string) => sel;
+  export function Selector(sel: string) {
+    return sel;
+  }
 
   /** Element with ID */
-  export const Id = (id: string) => `#${id}`;
+  export function Id(id: string) {
+    return `#${id}`;
+  }
 
   /** Element with class */
-  export const Class = (cls: string) => `.${cls}`;
+  export function Class(cls: string) {
+    return `.${cls}`;
+  }
 
   /** Children */
   export function Children(): string;
@@ -141,124 +146,130 @@ namespace Selectors {
 
   export namespace Pseudo {
     export namespace Prefixed {
-      export namespace Moz {
-        export const Dir = ":-moz-dir";
-        export const AnyLink = ":-moz-any-link";
-        export const FullScreen = ":-moz-full-screen";
-        export const OnlyWhitespace = ":-moz-only-whitespace";
-        export const Placeholder = ":-moz-placeholder";
-        export const ReadOnly = ":-moz-read-only";
-        export const ReadWrite = ":-moz-read-write";
+      export const enum Moz {
+        Dir = ":-moz-dir",
+        AnyLink = ":-moz-any-link",
+        FullScreen = ":-moz-full-screen",
+        OnlyWhitespace = ":-moz-only-whitespace",
+        Placeholder = ":-moz-placeholder",
+        ReadOnly = ":-moz-read-only",
+        ReadWrite = ":-moz-read-write",
 
-        export const Placeholder2 = "::-moz-placeholder";
-        export const ProgressBar = "::-moz-progress-bar";
-        export const RangeProgress = "::-moz-range-progress";
-        export const RangeThumb = "::-moz-range-thumb";
-        export const RangeTrack = "::-moz-range-track";
-        export const Selection = "::-moz-selection";
+        Placeholder2 = "::-moz-placeholder",
+        ProgressBar = "::-moz-progress-bar",
+        RangeProgress = "::-moz-range-progress",
+        RangeThumb = "::-moz-range-thumb",
+        RangeTrack = "::-moz-range-track",
+        Selection = "::-moz-selection",
       }
 
-      export namespace Webkit {
-        export const AnyLink = ":-webkit-any-link";
-        export const FullScreen = ":-webkit-full-screen";
+      export const enum Webkit {
+        AnyLink = ":-webkit-any-link",
+        FullScreen = ":-webkit-full-screen",
 
-        export const Backdrop = "::-webkit-backdrop";
-        export const InputPlaceholder = "::-webkit-input-placeholder";
-        export const ProgressBar = "::-webkit-progress-bar";
-        export const ProgressInnerValue = "::-webkit-progress-inner-value";
-        export const ProgressValue = "::-webkit-progress-value";
-        export const SliderRunnableTrack = "::-webkit-slider-runnable-track";
-        export const SliderThumb = "::-webkit-slider-thumb";
+        Backdrop = "::-webkit-backdrop",
+        InputPlaceholder = "::-webkit-input-placeholder",
+        ProgressBar = "::-webkit-progress-bar",
+        ProgressInnerValue = "::-webkit-progress-inner-value",
+        ProgressValue = "::-webkit-progress-value",
+        SliderRunnableTrack = "::-webkit-slider-runnable-track",
+        SliderThumb = "::-webkit-slider-thumb",
       }
 
-      export namespace MS {
-        export const Fullscreen = ":-ms-fullscreen";
-        export const InputPlaceholder = ":-ms-input-placeholder";
+      export const enum MS {
+        Fullscreen = ":-ms-fullscreen",
+        InputPlaceholder = ":-ms-input-placeholder",
 
-        export const Backdrop = "::-ms-backdrop";
-        export const Browse = "::-ms-browse";
-        export const Check = "::-ms-check";
-        export const Clear = "::-ms-clear";
-        export const Fill = "::-ms-fill";
-        export const FillLower = "::-ms-fill-lower";
-        export const FillUpper = "::-ms-fill-upper";
-        export const Reveal = "::-ms-reveal";
-        export const Thumb = "::-ms-thumb";
-        export const TicksAfter = "::-ms-ticks-after";
-        export const TicksBefore = "::-ms-ticks-before";
-        export const Tooltip = "::-ms-tooltip";
-        export const Track = "::-ms-track";
-        export const Value = "::-ms-value";
+        Backdrop = "::-ms-backdrop",
+        Browse = "::-ms-browse",
+        Check = "::-ms-check",
+        Clear = "::-ms-clear",
+        Fill = "::-ms-fill",
+        FillLower = "::-ms-fill-lower",
+        FillUpper = "::-ms-fill-upper",
+        Reveal = "::-ms-reveal",
+        Thumb = "::-ms-thumb",
+        TicksAfter = "::-ms-ticks-after",
+        TicksBefore = "::-ms-ticks-before",
+        Tooltip = "::-ms-tooltip",
+        Track = "::-ms-track",
+        Value = "::-ms-value",
       }
     }
 
-    // Double colon
-    export const After2 = "::after";
-    export const Backdrop = "::backdrop";
-    export const Before2 = "::before";
-    export const Colon2 = "::cue";
-    export const FirstLetter2 = "::first-letter";
-    export const FirstLine2 = "::first-line";
-    export const GrammarError = "::grammar-error";
-    export const Placeholder = "::placeholder";
-    export const Selection = "::selection";
-    export const Slotted2 = "::slotted";
-    export const SpellingError = "::spelling-error";
+    export const enum Static {
+      // Double colon
+      After2 = "::after",
+      Backdrop = "::backdrop",
+      Before2 = "::before",
+      Colon2 = "::cue",
+      FirstLetter2 = "::first-letter",
+      FirstLine2 = "::first-line",
+      GrammarError = "::grammar-error",
+      Placeholder = "::placeholder",
+      Selection = "::selection",
+      Slotted2 = "::slotted",
+      SpellingError = "::spelling-error",
 
-    // Single colon
-    export const Active = ":active";
-    export const After = ":after";
-    export const AnyLink = ":any-link";
-    export const Before = ":before";
-    export const Blank = ":blank";
-    export const Checked = ":checked";
-    export const Default = ":default";
-    export const Defined = ":defined";
-    export const Dir = (dir: "ltr" | "rtl") => `:dir(${dir})`;
-    export const Disabled = ":disabled";
-    export const Empty = ":empty";
-    export const Enabled = ":enabled";
-    export const First = ":first";
-    export const FirstChild = ":first-child";
-    export const FirstLetter = ":first-letter";
-    export const FirstLine = ":first-line";
-    export const FirstOfType = ":first-of-type";
-    export const Focus = ":focus";
-    export const FocusWithin = ":focus-within";
-    export const Fullscreen = ":fullscreen";
-    export const Has = (selector: string) => `:has(${selector})`;
-    export const Host = (selector: string) => `:host(${selector})`;
-    export const HostContext = (selector: string) => `:host-context(${selector})`;
-    export const Hover = ":hover";
-    export const InRange = ":in-range";
-    export const Indeterminate = ":indeterminate";
-    export const Invalid = ":invalid";
-    export const Is = (selector: string) => `:is(${selector})`;
-    export const Lang = (language: string) => `:lang(${language})`;
-    export const LastChild = ":last-child";
-    export const LastOfType = ":last-of-type";
-    export const Left = ":left";
-    export const Link = ":link";
-    export const Not = (selector: string) => `:not(${selector})`;
-    export const NthChild = (n: number) => `:nth-child${n}`;
-    export const NthLastChild = (n: number) => `:nth-last-child(${n})`;
-    export const NthLastOfType = (n: number) => `:nth-last-of-type(${n})`;
-    export const NthOfType = (n: number) => `:nth-of-type(${n})`;
-    export const OnlyChild = ":only-child";
-    export const OnlyOfType = ":only-of-type";
-    export const Optional = ":optional";
-    export const OutOfRange = ":out-of-range";
-    export const PlaceholderShown = ":placeholder-shown";
-    export const ReadOnly = ":read-only";
-    export const ReadWrite = ":read-write";
-    export const Required = ":required";
-    export const Right = ":right";
-    export const Root = ":root";
-    export const Scope = ":scope";
-    export const Target = ":target";
-    export const Valid = ":valid";
-    export const Visited = ":visited";
-    export const Where = (selector: string) => `:where(${selector})`;
+      // Single colon
+      Active = ":active",
+      After = ":after",
+      AnyLink = ":any-link",
+      Before = ":before",
+      Blank = ":blank",
+      Checked = ":checked",
+      Default = ":default",
+      Defined = ":defined",
+      Disabled = ":disabled",
+      Empty = ":empty",
+      Enabled = ":enabled",
+      First = ":first",
+      FirstChild = ":first-child",
+      FirstLetter = ":first-letter",
+      FirstLine = ":first-line",
+      FirstOfType = ":first-of-type",
+      Focus = ":focus",
+      FocusWithin = ":focus-within",
+      Fullscreen = ":fullscreen",
+      Hover = ":hover",
+      InRange = ":in-range",
+      Indeterminate = ":indeterminate",
+      Invalid = ":invalid",
+      LastChild = ":last-child",
+      LastOfType = ":last-of-type",
+      Left = ":left",
+      Link = ":link",
+      OnlyChild = ":only-child",
+      OnlyOfType = ":only-of-type",
+      Optional = ":optional",
+      OutOfRange = ":out-of-range",
+      PlaceholderShown = ":placeholder-shown",
+      ReadOnly = ":read-only",
+      ReadWrite = ":read-write",
+      Required = ":required",
+      Right = ":right",
+      Root = ":root",
+      Scope = ":scope",
+      Target = ":target",
+      Valid = ":valid",
+      Visited = ":visited",
+    }
+
+    // Dynamic pseudo selectors
+    export namespace Dynamic {
+      export const Dir = (dir: "ltr" | "rtl") => `:dir(${dir})`;
+      export const Has = (selector: string) => `:has(${selector})`;
+      export const Host = (selector: string) => `:host(${selector})`;
+      export const HostContext = (selector: string) => `:host-context(${selector})`;
+      export const Is = (selector: string) => `:is(${selector})`;
+      export const Lang = (language: string) => `:lang(${language})`;
+      export const Not = (selector: string) => `:not(${selector})`;
+      export const NthChild = (n: number) => `:nth-child${n}`;
+      export const NthLastChild = (n: number) => `:nth-last-child(${n})`;
+      export const NthLastOfType = (n: number) => `:nth-last-of-type(${n})`;
+      export const NthOfType = (n: number) => `:nth-of-type(${n})`;
+      export const Where = (selector: string) => `:where(${selector})`;
+    }
   }
 }
 

@@ -1,3 +1,7 @@
+/**
+ * Theme
+ */
+
 import { InterpolationWithTheme } from "@emotion/core";
 
 export interface Theme<Named extends string = string> {
