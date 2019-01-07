@@ -102,81 +102,16 @@ yarn add @service-ui/react
 npm install @service-ui/react
 ```
 
-## Naming conventions & style guide
+## Thank you
 
-This library provides a range of different types of objects. We use the
-following naming convention to separate them.
+service.ui is kindly supported by:
 
-1. Function names are by default `lowerCamelCase`. This is in particular true
-   for utility functions.
-2. Classes are `UpperCamelCase` (`PascalCase`).
-3. Local variables are `lowerCamelCase`.
-
-4. Property helper functions (functions that aid the construction of
-   syntactically correct CSS attributes) are `UpperCamelCase`, because they
-   construct a value.
-
-```tsx
-<Box
-  css={{
-    animation: Animation({ ... })
-  }}
-/>
-```
-
-They accept a single argument that is an object of a `<AttributeName>Props`
-type, i.e.:
-
-```tsx
-interface AnimationProps {
-    // Relevant attributes
-}
-
-const animation = (props: AnimationProps): AnimationProperty => {
-    /* Compute the value */
-};
-
-export const animationList = CommaSeparatedList;
-
-export const Animations = ``;
-```
-
-5. Mixins are `lowerCamelCase` and end in mixin and must be of type `Mixin<P>`
-   or `FunctionMixin<P>`, where `P` is a the props for the shorthand attributes
-   you would like to use and it should be named `<MixinName>Props`.
-
-```tsx
-export interface AnimationMixinProps {
-  a?: AnimationProperty | AnimationProps | Animatio;
-}
-
-const animationMixin -
-
-```
-
-animation(props: AnimationProps)
-
-<Box css={{
-        animation: Animation({ ... })
-    }} />
-
-AnimationProps
-
-Mixin
-
-animationMixin
-
-Mixin props
-
-AnimationMixinProps
-
-Component
-
-Box
-
-Component props
-
-BoxProps
+<a href="https://www.browserstack.com" title="BrowserStack">
+  <picture>
+    <source srcset="./media/browserstack/Browserstack-logo.svg" type="image/svg+xml">
+    <img src="./media/browserstack/Browserstack-logo@2x.png" alt="Browserstack">
+  </picture>
+</a>
 
 ## License: MIT
 
