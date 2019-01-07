@@ -12,6 +12,17 @@ yarn add @service-ui/mixins
 npm install @service-ui/mixins
 ```
 
+## Thank you
+
+service.js is kindly supported by:
+
+<a href="https://www.browserstack.com" title="BrowserStack">
+  <picture>
+    <source srcset="./media/browserstack/Browserstack-logo.svg" type="image/svg+xml">
+    <img src="./media/browserstack/Browserstack-logo@2x.png" alt="Browserstack">
+  </picture>
+</a>
+
 ## License: MIT
 
 MIT License
