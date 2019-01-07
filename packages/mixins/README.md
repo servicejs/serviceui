@@ -14,7 +14,7 @@ npm install @service-ui/mixins
 
 ## Thank you
 
-service.js is kindly supported by:
+service.ui is kindly supported by:
 
 <a href="https://www.browserstack.com" title="BrowserStack">
   <picture>
