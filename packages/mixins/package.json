@@ -41,10 +41,11 @@
     "typescript": "^3.1.6",
     "vinyl": "^2.2.0"
   },
-  "dependencies": {
-    "@emotion/core": "^10.0.5",
-    "@emotion/styled": "^10.0.5",
-    "emotion-theming": "^10.0.5",
+  "dependencies": {},
+  "peerDependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
+    "emotion-theming": "^10.0.6",
     "react": "^16.7.0"
   },
   "size-limit": [
