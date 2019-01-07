@@ -10,11 +10,6 @@ import React from "react";
 import { Fixed } from "../../../src";
 
 class Stats extends React.Component {
-  public componentDidMount() {
-    window.addEventListener("resize", this.onWindowResize);
-    this.onWindowResize();
-  }
-
   public render() {
     return (
       <Fixed bottom={0} left={0} bg="rgba(255,255,255,0.1)" css={{ fontSize: `0.8rem`, lineHeight: `1.5rem` }}>
@@ -34,11 +29,16 @@ class Stats extends React.Component {
     );
   }
 
+  public componentDidMount() {
+    window.addEventListener("resize", this.onWindowResize);
+    this.onWindowResize();
+  }
+
   public componentWillUnmount() {
     window.removeEventListener("resize", this.onWindowResize);
   }
 
-  protected onWindowResize() {
+  protected onWindowResize = () => {
     this.forceUpdate();
   }
 }

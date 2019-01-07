@@ -2,9 +2,9 @@
  * Unsplash image and picture components
  */
 
-/* @jsx jsx */
-
 // tslint:disable:no-shadowed-variable
+
+/* @jsx jsx */
 
 import { jsx } from "@emotion/core";
 import { FunctionComponent } from "react";

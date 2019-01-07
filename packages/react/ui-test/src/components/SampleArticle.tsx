@@ -10,6 +10,8 @@ import MuiTextField from "@material-ui/core/TextField";
 import { em, ThemedProps } from "@service-ui/mixins";
 import { withTheme } from "emotion-theming";
 import { inject, observer } from "mobx-react";
+
+import { RouteComponentProps, withRouter } from "react-router";
 import {
   AspectRatio,
   Audio,
@@ -28,7 +30,7 @@ import {
   SafeArea,
   Video,
 } from "../../../src";
-import { SampleTheme } from "../theme";
+import SampleTheme from "../SampleTheme";
 import ExampleChart from "./ExampleChart";
 import Unsplash from "./Unsplash";
 
@@ -50,8 +52,9 @@ const tex = `f(x) = \\int_{-\\infty}^\\infty
     \\hat f(\\xi)\\,e^{2 \\pi i \\xi x}
     \\,d\\xi`;
 
-const SampleArticle = withTheme(({ theme }: ThemedProps<SampleTheme>) => {
-  return (
+// ThemedProps<SampleTheme> & RouteComponentProps
+const SampleArticle = withRouter(
+  withTheme(({ theme }: any) => (
     <Box w="100%">
       {/* Background & minimum padding */}
       <Box bg="#FFF" p={1} as="article" w="100%">
@@ -177,8 +180,8 @@ const SampleArticle = withTheme(({ theme }: ThemedProps<SampleTheme>) => {
         </SafeArea.X>
       </Box>
     </Box>
-  );
-});
+  )),
+);
 
 // {/* Each block represents one section */}
 // <Repeat

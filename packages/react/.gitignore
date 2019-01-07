@@ -3,6 +3,7 @@
 ### Ignore build product directories ###
 dist
 old
+ui-test/src/old
 
 todo.md
 

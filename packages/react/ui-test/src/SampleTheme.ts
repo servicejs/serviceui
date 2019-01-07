@@ -1,3 +1,5 @@
+// tslint:disable:object-literal-sort-keys
+
 import { InterpolationWithTheme } from "@emotion/core";
 import {
   gradientStep,
@@ -60,99 +62,7 @@ const Cond = {
   maxResolution: (value: string) => MediaQueryCondition("max-resolution", value),
 };
 
-export class SampleTheme {
-  @computed
-  public get global() {
-    return {
-      html: {
-        [Selectors.This]: {
-          fontSize: "16px",
-
-          WebkitTextSizeAdjust: "100%",
-          msTextSizeAdjust: "100%",
-          textSizeAdjust: "100%",
-
-          // WebkitTransform: "scale(1) !important",
-        },
-
-        ...MQ.screen(
-          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-          Cond.maxAspectRatio(this.aspectRatioBreakPoint3),
-        )({
-          fontSize: this.fontSizeBelowAspectRatioBreakPoint3,
-        }),
-        ...MQ.screen(
-          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-          Cond.minAspectRatio(this.aspectRatioBreakPoint3),
-        )({
-          fontSize: this.fontSizeBelowAspectRatioBreakPoint4,
-        }),
-
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint1),
-        // )({
-        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint1,
-        // }),
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint2),
-        // )({
-        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint2,
-        // }),
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.minAspectRatio(this.aspectRatioBreakPoint2),
-        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint3),
-        // )({
-        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint3,
-        // }),
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.minAspectRatio(this.aspectRatioBreakPoint3),
-        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint4),
-        // )({
-        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint4,
-        // }),
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.minAspectRatio(this.aspectRatioBreakPoint4),
-        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint5),
-        // )({
-        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint5,
-        // }),
-        // ...MQ.screen(
-        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-        //   Cond.minAspectRatio(this.aspectRatioBreakPoint5),
-        // )({
-        //   fontSize: this.fontSizeAboveAspectRatioBreakPoint5,
-        // }),
-      },
-
-      body: {
-        lineHeight: this.baseLineHeight,
-
-        background: repeatingLinearGradient({
-          direction: "0deg",
-          steps: [
-            gradientStep("rgba(255,0,0,0.5)", this.scale(0)),
-            gradientStep("rgba(255,0,0,0.5)", this.scale(1)),
-            gradientStep("rgba(0,255,0,0.5)", this.scale(1)),
-            gradientStep("rgba(0,255,0,0.5)", this.scale(2)),
-          ],
-        }),
-      },
-    };
-  }
-
+class SampleTheme {
   @computed
   private get aspectRatioBreakPoint(): number {
     return (
@@ -259,6 +169,16 @@ export class SampleTheme {
     return this.maxFontSizeForHeight;
   }
 
+  @computed
+  private get emWidth(): number {
+    return this.actualWidth / this.actualBaseFontSize;
+  }
+
+  @computed
+  private get emHeight(): number {
+    return this.actualHeight / this.actualBaseLineHeight;
+  }
+
   @observable
   public baseFontSize: number = 16;
   @observable
@@ -302,16 +222,6 @@ export class SampleTheme {
   @observable
   private actualHeight: number = window.innerHeight;
 
-  @computed
-  private get emWidth(): number {
-    return this.actualWidth / this.actualBaseFontSize;
-  }
-
-  @computed
-  private get emHeight(): number {
-    return this.actualHeight / this.actualBaseLineHeight;
-  }
-
   constructor() {
     window.addEventListener(
       "resize",
@@ -322,6 +232,101 @@ export class SampleTheme {
         this.actualHeight = window.innerHeight;
       }),
     );
+  }
+
+  @computed
+  public get global() {
+    return {
+      html: {
+        [Selectors.This]: {
+          fontSize: this.baseFontSize,
+
+          WebkitTextSizeAdjust: "100%",
+          msTextSizeAdjust: "100%",
+          textSizeAdjust: "100%",
+
+          // WebkitTransform: "scale(1) !important",
+        },
+
+        ...MQ.screen(
+          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+          Cond.maxAspectRatio(this.aspectRatioBreakPoint3),
+        )({
+          fontSize: this.fontSizeBelowAspectRatioBreakPoint3,
+        }),
+        ...MQ.screen(
+          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+          Cond.minAspectRatio(this.aspectRatioBreakPoint3),
+        )({
+          fontSize: this.fontSizeBelowAspectRatioBreakPoint4,
+        }),
+
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint1),
+        // )({
+        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint1,
+        // }),
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint2),
+        // )({
+        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint2,
+        // }),
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.minAspectRatio(this.aspectRatioBreakPoint2),
+        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint3),
+        // )({
+        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint3,
+        // }),
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.minAspectRatio(this.aspectRatioBreakPoint3),
+        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint4),
+        // )({
+        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint4,
+        // }),
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.minAspectRatio(this.aspectRatioBreakPoint4),
+        //   Cond.maxAspectRatio(this.aspectRatioBreakPoint5),
+        // )({
+        //   fontSize: this.fontSizeBelowAspectRatioBreakPoint5,
+        // }),
+        // ...MQ.screen(
+        //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
+        //   Cond.minHeight(px(this.minHeightForFontSizeScaling)),
+        //   Cond.minAspectRatio(this.aspectRatioBreakPoint5),
+        // )({
+        //   fontSize: this.fontSizeAboveAspectRatioBreakPoint5,
+        // }),
+      },
+
+      body: {
+        color: this.colors.black,
+        background: this.colors.white,
+
+        lineHeight: this.baseLineHeight,
+
+        // background: repeatingLinearGradient({
+        //   direction: "0deg",
+        //   steps: [
+        //     gradientStep("rgba(255,0,0,0.5)", this.scale(0)),
+        //     gradientStep("rgba(255,0,0,0.5)", this.scale(1)),
+        //     gradientStep("rgba(0,255,0,0.5)", this.scale(1)),
+        //     gradientStep("rgba(0,255,0,0.5)", this.scale(2)),
+        //   ],
+        // }),
+      },
+    };
   }
 
   // prettier-ignore
@@ -382,3 +387,5 @@ export class SampleTheme {
     }
   }
 }
+
+export default SampleTheme;
