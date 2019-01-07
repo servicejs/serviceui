@@ -18,6 +18,9 @@
     "size": "size-limit"
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
+    "@service-ui/mixins": "^0.1.2",
     "@types/del": "^3.0.1",
     "@types/gulp": "^4.0.5",
     "@types/gulp-change": "^1.0.0",
@@ -29,6 +32,7 @@
     "@types/react": "^16.7.18",
     "csstype": "^2.5.7",
     "del": "^3.0.0",
+    "emotion-theming": "^10.0.6",
     "gulp": "^4.0.0",
     "gulp-change": "^1.0.0",
     "gulp-debug": "^4.0.0",
@@ -37,23 +41,27 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.3",
     "prettier": "^1.14.3",
+    "react": "^16.7.0",
     "size-limit": "^0.21.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "typescript": "^3.1.6",
+    "typescript": "^3.2.2",
     "vinyl": "^2.2.0"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.4",
-    "@emotion/styled": "^10.0.4",
-    "@service-ui/mixins": "^0.1.0",
-    "emotion-theming": "^10.0.4",
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "@emotion/is-prop-valid": "^0.7.3"
   },
   "size-limit": [
     {
       "path": "dist/index.mjs",
       "limit": "25 KB"
     }
-  ]
+  ],
+  "peerDependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
+    "@service-ui/mixins": "^0.1.2",
+    "emotion-theming": "^10.0.6",
+    "react": "^16.7.0"
+  }
 }
