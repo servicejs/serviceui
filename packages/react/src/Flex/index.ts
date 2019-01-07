@@ -5,20 +5,20 @@
 // tslint:disable:no-shadowed-variable
 
 import { StyledComponent } from "@emotion/styled";
-import { flexBoxMixin, FlexProps, flexPropsKeys } from "@service-ui/mixins/flex";
+import FlexMixinNS from "@service-ui/mixins/Flex";
 import augment from "@service-ui/mixins/util/augment";
 import { disallowKeys } from "@service-ui/mixins/util/filter-props";
 import PropsType from "@service-ui/mixins/util/PropsType";
 import Box from "../Box";
 
-const Flex = augment<typeof Box, FlexProps>({
+const Flex = augment<typeof Box, FlexMixinNS.Props>({
   component: Box,
   displayName: "Flex",
-  mixin: flexBoxMixin,
+  mixin: FlexMixinNS.mixin,
   options: {
-    shouldForwardProp: disallowKeys(...flexPropsKeys),
+    shouldForwardProp: disallowKeys(...FlexMixinNS.Props.keys),
   },
-}) as StyledComponent<PropsType<"div"> & Box.Props, FlexProps, any> & {
+}) as StyledComponent<PropsType<"div"> & Box.Props, FlexMixinNS.Props, any> & {
   Row: typeof Row;
   Column: typeof Column;
   WrappingRow: typeof WrappingRow;

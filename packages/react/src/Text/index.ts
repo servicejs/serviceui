@@ -5,8 +5,10 @@
 // tslint:disable:no-shadowed-variable
 
 import { StyledComponent } from "@emotion/styled";
+import { ThemedProps } from "@service-ui/mixins/Theme";
 import augment from "@service-ui/mixins/util/augment";
 import PropsType from "@service-ui/mixins/util/PropsType";
+
 import Box from "../Box";
 
 const Text = augment({
@@ -25,7 +27,7 @@ const Text = augment({
 const TextBlock = augment<typeof Text, {}>({
   component: Text,
   displayName: "Text.Block",
-  mixin: ({ theme }) => ({
+  mixin: ({ theme }: ThemedProps<any>) => ({
     display: "block",
     marginBottom: theme.scale(1),
     marginTop: theme.scale(1),

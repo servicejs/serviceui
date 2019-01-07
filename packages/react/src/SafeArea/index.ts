@@ -6,7 +6,7 @@
 
 import { StyledComponent } from "@emotion/styled";
 
-import { safeAreaBasePropsKeys, safeAreaMixin, SafeAreaMixinProps } from "@service-ui/mixins/safe-area";
+import SafeAreaMixinNS from "@service-ui/mixins/SafeArea";
 import augment from "@service-ui/mixins/util/augment";
 import { disallowKeys } from "@service-ui/mixins/util/filter-props";
 import PropsType from "@service-ui/mixins/util/PropsType";
@@ -14,13 +14,13 @@ import Box from "../Box";
 
 /** Declarations */
 
-const SafeArea = augment<typeof Box, SafeAreaMixinProps>({
+const SafeArea = augment<typeof Box, SafeAreaMixinNS.MixinProps>({
   component: Box,
-  mixin: safeAreaMixin,
+  mixin: SafeAreaMixinNS.mixin,
   options: {
-    shouldForwardProp: disallowKeys(...safeAreaBasePropsKeys),
+    shouldForwardProp: disallowKeys(...SafeAreaMixinNS.mixinKeys),
   },
-}) as StyledComponent<PropsType<"div"> & Box.Props, SafeAreaMixinProps, any> & {
+}) as StyledComponent<PropsType<"div"> & Box.Props, SafeAreaMixinNS.MixinProps, any> & {
   Left: typeof SafeAreaLeft;
   Right: typeof SafeAreaRight;
   Top: typeof SafeAreaTop;

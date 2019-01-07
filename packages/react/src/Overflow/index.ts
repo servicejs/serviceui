@@ -4,7 +4,7 @@
 
 import { StyledComponent } from "@emotion/styled";
 
-import { overflowMixin, OverflowMixinProps } from "@service-ui/mixins/overflow";
+import OverflowMixinNS from "@service-ui/mixins/Overflow";
 import augment from "@service-ui/mixins/util/augment";
 import PropsType from "@service-ui/mixins/util/PropsType";
 import Box from "../Box";
@@ -12,7 +12,7 @@ import Box from "../Box";
 /**
  * A container that displays scroll bars when its content overflows
  */
-const Overflow = augment<typeof Box, OverflowMixinProps>({
+const Overflow = augment<typeof Box, OverflowMixinNS.MixinProps>({
   component: Box,
   defaultProps: {
     overflow: "auto",
@@ -20,8 +20,8 @@ const Overflow = augment<typeof Box, OverflowMixinProps>({
     overflowY: "auto",
   },
   displayName: "Overflow",
-  mixin: overflowMixin,
-}) as StyledComponent<PropsType<"div"> & Box.Props, OverflowMixinProps, any> & {
+  mixin: OverflowMixinNS.mixin,
+}) as StyledComponent<PropsType<"div"> & Box.Props, OverflowMixinNS.MixinProps, any> & {
   X: typeof OverflowX;
   Y: typeof OverflowY;
 };

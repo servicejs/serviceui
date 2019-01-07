@@ -31,6 +31,7 @@ import {
   Video,
 } from "../../../src";
 import SampleTheme from "../SampleTheme";
+import debug from "../util";
 import ExampleChart from "./ExampleChart";
 import Unsplash from "./Unsplash";
 
@@ -137,10 +138,10 @@ const SampleArticle = withRouter(
       {/* Section */}
 
       {/* Background & minimum padding */}
-      <Box bg="#F00" p={1} as="section" w="100%">
+      <Box bg={theme!.colors.red} c={theme!.colors.white} p={1} as="section" w="100%">
         {/* SafeArea.X, which also centers the content horizontally & contains the width constraint */}
         <SafeArea.X mx="auto" maxWidth={em(33)}>
-          <Heading.H1>Do more.</Heading.H1>
+          <Heading.H1>service.ui</Heading.H1>
         </SafeArea.X>
       </Box>
 

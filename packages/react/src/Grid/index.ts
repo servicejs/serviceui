@@ -2,20 +2,20 @@
  * Grid
  */
 
-import { gridMixin, GridProps, gridPropsKeys } from "@service-ui/mixins/grid";
+import GridMixinNS from "@service-ui/mixins/Grid";
 import augment from "@service-ui/mixins/util/augment";
 import { disallowKeys } from "@service-ui/mixins/util/filter-props";
 import PropsType from "@service-ui/mixins/util/PropsType";
 
 import Box from "../Box";
 
-const Grid = augment<typeof Box, GridProps>({
+const Grid = augment<typeof Box, GridMixinNS.Props>({
   component: Box,
   defaultProps: {},
   displayName: "Grid",
-  mixin: gridMixin,
+  mixin: GridMixinNS.mixin,
   options: {
-    shouldForwardProp: disallowKeys(...gridPropsKeys),
+    shouldForwardProp: disallowKeys(...GridMixinNS.Props.keys),
   },
 });
 

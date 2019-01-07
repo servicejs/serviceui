@@ -1,66 +1,10 @@
 // tslint:disable:object-literal-sort-keys
 
 import { InterpolationWithTheme } from "@emotion/core";
-import {
-  gradientStep,
-  MediaQuery,
-  MediaQueryCondition,
-  px,
-  rem,
-  repeatingLinearGradient,
-  Selectors,
-  vh,
-  vw,
-} from "@service-ui/mixins";
+import { AnimatableProperties, Gradient, MediaQuery, px, rem, Selectors, vh, vw } from "@service-ui/mixins";
 import { action, computed, observable } from "mobx";
-import { black, blue, gray, green, red, white, yellow } from "./util/clrs.cc-colors";
 
-const MQ = {
-  all: MediaQuery("all"),
-  print: MediaQuery("print"),
-  screen: MediaQuery("screen"),
-  speech: MediaQuery("speech"),
-};
-
-interface AspectRatioFunction<T> {
-  (aspectRatio: number): T;
-  // tslint:disable-next-line:unified-signatures
-  (numerator: number, denominator: number | undefined): T;
-}
-
-const aspectRatioString = ((value1: number, value2?: number) => {
-  if (typeof value2 === "number") {
-    if (Number.isInteger(value1) && Number.isInteger(value2)) {
-      return `${value1}/${value2}`;
-    }
-    return aspectRatioString(value1 / value2);
-  }
-
-  return `${Math.round(value1 * 10000)}/10000`;
-}) as AspectRatioFunction<string>;
-
-const Cond = {
-  width: (value: string) => MediaQueryCondition("width", value),
-  minWidth: (value: string) => MediaQueryCondition("min-width", value),
-  maxWidth: (value: string) => MediaQueryCondition("max-width", value),
-
-  height: (value: string) => MediaQueryCondition("height", value),
-  minHeight: (value: string) => MediaQueryCondition("min-height", value),
-  maxHeight: (value: string) => MediaQueryCondition("max-height", value),
-
-  orientation: (value: string) => MediaQueryCondition("orientation", value),
-
-  aspectRatio: ((value1: number, value2?: number) =>
-    MediaQueryCondition("aspect-ratio", aspectRatioString(value1, value2))) as AspectRatioFunction<string>,
-  minAspectRatio: ((value1: number, value2?: number) =>
-    MediaQueryCondition("min-aspect-ratio", aspectRatioString(value1, value2))) as AspectRatioFunction<string>,
-  maxAspectRatio: ((value1: number, value2?: number) =>
-    MediaQueryCondition("max-aspect-ratio", aspectRatioString(value1, value2))) as AspectRatioFunction<string>,
-
-  resolution: (value: string) => MediaQueryCondition("resolution", value),
-  minResolution: (value: string) => MediaQueryCondition("min-resolution", value),
-  maxResolution: (value: string) => MediaQueryCondition("max-resolution", value),
-};
+import * as clrs from "./util/clrs.cc-colors";
 
 class SampleTheme {
   @computed
@@ -186,14 +130,13 @@ class SampleTheme {
 
   @observable
   public colors = {
-    black,
-    white,
+    ...clrs,
 
-    danger: red,
-    disabled: gray,
-    info: blue,
-    success: green,
-    warning: yellow,
+    danger: clrs.red,
+    disabled: clrs.gray,
+    info: clrs.blue,
+    success: clrs.green,
+    warning: clrs.yellow,
   };
 
   @observable
@@ -248,20 +191,20 @@ class SampleTheme {
           // WebkitTransform: "scale(1) !important",
         },
 
-        ...MQ.screen(
-          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-          Cond.maxAspectRatio(this.aspectRatioBreakPoint3),
-        )({
+        [MediaQuery.screen(
+          MediaQuery.Condition.minWidth(px(this.minWidthForFontSizeScaling)),
+          MediaQuery.Condition.minHeight(px(this.minHeightForFontSizeScaling)),
+          MediaQuery.Condition.maxAspectRatio(this.aspectRatioBreakPoint3),
+        )]: {
           fontSize: this.fontSizeBelowAspectRatioBreakPoint3,
-        }),
-        ...MQ.screen(
-          Cond.minWidth(px(this.minWidthForFontSizeScaling)),
-          Cond.minHeight(px(this.minHeightForFontSizeScaling)),
-          Cond.minAspectRatio(this.aspectRatioBreakPoint3),
-        )({
+        },
+        [MediaQuery.screen(
+          MediaQuery.Condition.minWidth(px(this.minWidthForFontSizeScaling)),
+          MediaQuery.Condition.minHeight(px(this.minHeightForFontSizeScaling)),
+          MediaQuery.Condition.minAspectRatio(this.aspectRatioBreakPoint3),
+        )]: {
           fontSize: this.fontSizeBelowAspectRatioBreakPoint4,
-        }),
+        },
 
         // ...MQ.screen(
         //   Cond.minWidth(px(this.minWidthForFontSizeScaling)),
@@ -363,7 +306,10 @@ class SampleTheme {
             outlineStyle: "solid",
             outlineWidth: this.scale(1 / 16),
           },
-          [Selectors.Pseudo.Active]: { background: this.colors.info, boxShadow: `rgba(0,0,0,0.25) 0 0 10rem inset` },
+          [Selectors.Pseudo.Active]: {
+            background: this.colors.info,
+            boxShadow: `rgba(0,0,0,0.25) 0 0 10rem inset`,
+          },
           [Selectors.Pseudo.Disabled]: { background: this.colors.disabled, cursor: "not-allowed" },
         }); // // //
       case "Heading":
@@ -385,7 +331,7 @@ class SampleTheme {
       default:
         return () => ({});
     }
-  }
+  };
 }
 
 export default SampleTheme;
