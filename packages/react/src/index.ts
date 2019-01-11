@@ -27,7 +27,7 @@ export { default as Flex } from "./Flex";
 export { default as ForEach } from "./ForEach";
 export { default as Form } from "./Form";
 export { default as Grid } from "./Grid";
-export { default as Heading } from "./Heading";
+export { default as Heading, H1, H2, H3, H4, H5, H6 } from "./Heading";
 export { default as Highlight } from "./Highlight";
 export { default as If } from "./If";
 export { default as IFrame } from "./IFrame";
