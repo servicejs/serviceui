@@ -27,11 +27,9 @@ const Text = augment({
 const TextBlock = augment<typeof Text, {}>({
   component: Text,
   displayName: "Text.Block",
-  mixin: ({ theme }: ThemedProps<any>) => ({
+  mixin: {
     display: "block",
-    marginBottom: theme.scale(1),
-    marginTop: theme.scale(1),
-  }),
+  },
 });
 
 Text.Block = TextBlock;
