@@ -5,5 +5,8 @@
   "repository": "https://github.com/servicejs/serviceui",
   "author": "Frédérique Mittelstaedt (npm@gfm.io)",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
