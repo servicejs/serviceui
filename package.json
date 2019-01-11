@@ -6,6 +6,13 @@
   "author": "Frédérique Mittelstaedt (npm@gfm.io)",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lerna": "lerna",
+    "bootstrap": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^3.10.5"
+  },
   "workspaces": [
     "packages/*"
   ]
