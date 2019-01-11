@@ -1,11 +1,15 @@
 # service.ui
 
 <p align="center">
-<img width="300" src="./media/serviceui/serviceui-logo.svg">
+  <img width="300" src="./media/serviceui/serviceui-logo.svg">
 </p>
 <p align="center">
   service.ui is a design system and component framework<br/>for React, snabbdom and React Native, written in TypeScript.
 </p>
+
+![MIT License](https://img.shields.io/github/license/servicejs/serviceui.svg) 
+![Snyk](https://img.shields.io/snyk/vulnerabilities/github/servicejs/serviceui.svg)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 ## Thank you
 
