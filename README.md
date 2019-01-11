@@ -5,10 +5,8 @@
 service.ui is kindly supported by:
 
 <a href="https://www.browserstack.com" title="BrowserStack">
-  <picture>
-    <source srcset="./media/browserstack/Browserstack-logo.svg" type="image/svg+xml">
-    <img src="./media/browserstack/Browserstack-logo@2x.png" alt="Browserstack">
-  </picture>
+  <img width="300" src="./media/browserstack/Browserstack-logo.svg" alt="Browserstack">
+
 </a>
 
 ## License: MIT
