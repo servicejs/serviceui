@@ -1,5 +1,12 @@
 # service.ui
 
+<p align="center">
+<img width="300" src="./media/serviceui/serviceui-logo.svg">
+</p>
+<p align="center">
+  service.ui is a design system and component framework<br/>for React, snabbdom and React Native, written in TypeScript.
+</p>
+
 ## Thank you
 
 service.ui is kindly supported by:
