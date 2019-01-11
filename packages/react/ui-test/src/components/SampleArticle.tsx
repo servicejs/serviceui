@@ -19,6 +19,7 @@ import {
   Code,
   Figure,
   Grid,
+  H1,
   Heading,
   IFrame,
   Input,
@@ -61,7 +62,7 @@ const SampleArticle = withRouter(
       <Box bg="#FFF" p={1} as="article" w="100%">
         {/* SafeArea.X, which also centers the content horizontally & contains the width constraint */}
         <SafeArea.X mx="auto" maxWidth={em(33)}>
-          <Heading.H1>Hello World</Heading.H1>
+          <H1>Hello World</H1>
           <LoremParagraph />
           <MathJax.Provider>
             <MathJax.Node formula={tex} />
@@ -141,7 +142,7 @@ const SampleArticle = withRouter(
       <Box bg={theme!.colors.red} c={theme!.colors.white} p={1} as="section" w="100%">
         {/* SafeArea.X, which also centers the content horizontally & contains the width constraint */}
         <SafeArea.X mx="auto" maxWidth={em(33)}>
-          <Heading.H1>service.ui</Heading.H1>
+          <H1>service.ui</H1>
         </SafeArea.X>
       </Box>
 
@@ -151,7 +152,7 @@ const SampleArticle = withRouter(
       <Box bg="#FFF" p={1} as="section" w="100%">
         {/* SafeArea.X, which also centers the content horizontally & contains the width constraint */}
         <SafeArea.X mx="auto" maxWidth={em(33)}>
-          <Heading.H1>Some Form</Heading.H1>
+          <H1>Some Form</H1>
           <Grid gap={theme!.scale(1)} cols={12}>
             <Grid child={true} cs={1} ce={7} css={{ display: "flex", flexDirection: "column" }}>
               <Label htmlFor="email">Email</Label>

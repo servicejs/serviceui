@@ -311,7 +311,12 @@ class SampleTheme {
             boxShadow: `rgba(0,0,0,0.25) 0 0 10rem inset`,
           },
           [Selectors.Pseudo.Disabled]: { background: this.colors.disabled, cursor: "not-allowed" },
-        }); // // //
+        });
+      case "Text.Block":
+        return {
+          marginBottom: this.scale(1),
+          marginTop: this.scale(1),
+        };
       case "Heading":
         return { fontWeight: 700 };
       case "H1":
@@ -331,7 +336,7 @@ class SampleTheme {
       default:
         return () => ({});
     }
-  };
+  }
 }
 
 export default SampleTheme;

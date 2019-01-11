@@ -12,7 +12,6 @@ import App from "./App";
 import SampleTheme from "./SampleTheme";
 
 const theme = new SampleTheme();
-console.log(theme);
 
 mobx.configure({
   enforceActions: "always",
@@ -21,15 +20,15 @@ mobx.configure({
 const randomHex = () => ("0" + Math.round(Math.random() * 256).toString(16)).slice(-2);
 const randomColor = () => `#${randomHex()}${randomHex()}${randomHex()}`;
 
-setInterval(
-  mobx.action(() => {
-    theme.colors.black = randomColor();
-    theme.colors.white = randomColor();
-    // theme.baseFontSize = Math.round(16 + Math.random() * 32);
-    // console.log(theme);
-  }),
-  1000,
-);
+// setInterval(
+//   mobx.action(() => {
+//     theme.colors.black = randomColor();
+//     theme.colors.white = randomColor();
+//     // theme.baseFontSize = Math.round(16 + Math.random() * 32);
+//     // console.log(theme);
+//   }),
+//   1000,
+// );
 
 ReactDOM.render(
   <ErrorBoundary>
@@ -39,7 +38,8 @@ ReactDOM.render(
         <Global styles={fillScreenReset()} />
         <Global styles={fillScreenFlexReset()} />
         <Global styles={systemFontReset()} />
-        <Global styles={(t) => t.global} />
+        {/* tslint:disable-next-line:no-shadowed-variable */}
+        <Global styles={(theme) => theme.global} />
         <App />
       </MobxThemeProvider>
     </Provider>
