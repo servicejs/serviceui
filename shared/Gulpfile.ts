@@ -8,14 +8,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 import del from "del";
-import {
-  dest,
-  parallel,
-  series,
-  src,
-  task as gulpTask,
-  TaskFunction,
-} from "gulp";
+import { dest, parallel, series, src, task as gulpTask, TaskFunction } from "gulp";
 import change from "gulp-change";
 import debug from "gulp-debug";
 import gulpif from "gulp-if";
@@ -110,23 +103,16 @@ const compileTypeScriptToES = task("tsc:es", () =>
 );
 
 /** Compile TypeScript to CJS and ES modules in parallel */
-const compileTypeScript = task(
-  "tsc",
-  parallel(compileTypeScriptToCJS, compileTypeScriptToES),
-);
+const compileTypeScript = task("tsc", parallel(compileTypeScriptToCJS, compileTypeScriptToES));
 
 /** Copy static files */
-const copyStaticFiles = task("copy:static-files", () =>
-  src(["README.md", "LICENSE"]).pipe(dest(OUTPUT_PATH)),
-);
+const copyStaticFiles = task("copy:static-files", () => src(["README.md", "LICENSE"]).pipe(dest(OUTPUT_PATH)));
 
 /** Clean output path */
 const cleanOutputPath = task("clean:output", () => del([OUTPUT_PATH]));
 
 /** Clean node_mdoules */
-const cleanNodeModules = task("clean:node_modules", () =>
-  del(["./node_modules"]),
-);
+const cleanNodeModules = task("clean:node_modules", () => del(["./node_modules"]));
 
 /** Clean all */
 const clean = task("clean", parallel(cleanOutputPath, cleanNodeModules));
@@ -149,20 +135,15 @@ const packageJsonProcessorFactory = ({
   // Read the package.json
   const packageJsonContent = JSON.parse(fs.readFileSync(inputPath).toString());
   // Process the entries in the package.json
-  const fields = Object.keys(packageJsonContent).map((key) =>
-    processField(key, packageJsonContent[key]),
-  );
+  const fields = Object.keys(packageJsonContent).map((key) => processField(key, packageJsonContent[key]));
   // Generate the new package.json object representation
   const processedPackageJsonContent = Object.assign({}, ...fields);
   // Create the prettier-formatted string representation
-  const outputContent = prettier.format(
-    JSON.stringify(processedPackageJsonContent),
-    {
-      parser: "json",
-      tabWidth: 2,
-      useTabs: false,
-    },
-  );
+  const outputContent = prettier.format(JSON.stringify(processedPackageJsonContent), {
+    parser: "json",
+    tabWidth: 2,
+    useTabs: false,
+  });
   // Write the new file to disk
   fs.writeFileSync(outputPath, outputContent);
   // Call the callback to signal task completion
@@ -170,10 +151,7 @@ const packageJsonProcessorFactory = ({
 };
 
 /** Creates an object with the supplied key and value */
-const objectWithKeyAndValue = <K extends string, T>(
-  key: K,
-  value: T,
-): { [k in K]: T } => {
+const objectWithKeyAndValue = <K extends string, T>(key: K, value: T): { [k in K]: T } => {
   const o: any = {};
   o[key] = value;
   return o;
@@ -212,10 +190,7 @@ const packageJson = task(
         case "module":
         case "browser":
         case "types":
-          return objectWithKeyAndValue(
-            key,
-            path.relative(OUTPUT_PATH, value as string),
-          );
+          return objectWithKeyAndValue(key, path.relative(OUTPUT_PATH, value as string));
         // Ignore and remove all other fields
         default:
           return false;
@@ -229,10 +204,5 @@ const packageJson = task(
  *
  * Clean the output path, run the TypeScript compiler, copy static files, and create the new package.json.
  */
-const defaultTask = series(
-  cleanOutputPath,
-  compileTypeScript,
-  copyStaticFiles,
-  packageJson,
-);
+const defaultTask = series(cleanOutputPath, compileTypeScript, copyStaticFiles, packageJson);
 export default defaultTask;

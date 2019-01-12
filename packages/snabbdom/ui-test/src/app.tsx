@@ -1,6 +1,6 @@
 /* @jsx h */
 
-import { BrowserRenderer, Component, h } from "../src";
+import { BrowserRenderer, Component, h } from "../../src";
 
 const browserRenderer = new BrowserRenderer();
 
@@ -19,10 +19,7 @@ class MySnabbdomComponent extends Component {
   }
 }
 
-browserRenderer.renderAtNode(
-  <MySnabbdomComponent />,
-  document.documentElement!,
-);
+browserRenderer.renderAtNode(<MySnabbdomComponent />, document.documentElement!);
 
 // const vNode = snabbdomRenderer.toVNode(document.documentElement!);
 

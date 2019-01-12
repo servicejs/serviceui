@@ -1,10 +1,45 @@
 {
   "name": "@service-ui/snabbdom",
+  "description": "Snabbdom implementation of the service.ui component framework",
   "version": "0.0.1",
+  "author": {
+    "name": "Frédérique Mittelstaedt",
+    "email": "npm@gfm.io",
+    "url": "https://www.gfm.io"
+  },
+  "main": "dist/index",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "service.ui",
+    "service-ui",
+    "serviceui",
+    "snabbdom",
+    "component",
+    "service.js",
+    "service-js",
+    "servicejs"
+  ],
+  "homepage": "https://github.com/servicejs/serviceui#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/servicejs/serviceui.git"
+  },
+  "bugs": "https://github.com/servicejs/serviceui/issues",
   "scripts": {
+    "dev": "cd ./ui-test && parcel -d ./dist ./src/index.html",
+    "dev:build": "cd ./ui-test && parcel build -d ./dist ./src/index.html",
     "gulp": "gulp",
-    "dev": "parcel -d ./ui-test/dist ./ui-test/index.html",
-    "build:ui-test": "parcel build -d ./ui-test/dist ./ui-test/index.html"
+    "prebuild": "npm-run-all clean:dist",
+    "build": "gulp",
+    "publish": "cd ./dist && yarn publish",
+    "size": "size-limit",
+    "clean:dist": "rimraf ./dist",
+    "clean:node": "rimraf ./node",
+    "clean:ui-test": "rimraf ./ui-test/dist ./ui-test/.cache ./ui-test/node_modules",
+    "release": "npm-run-all build publish"
   },
   "devDependencies": {
     "parcel-bundler": "^1.11.0",

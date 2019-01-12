@@ -1,6 +1,6 @@
 # @service-ui/mixins
 
-A collection of CSS property helpers & mixins.
+A collection of CSS property helpers & mixins for service.ui.
 
 ## Install
 

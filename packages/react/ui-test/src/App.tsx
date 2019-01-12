@@ -6,7 +6,7 @@ import { jsx } from "@emotion/core";
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { Flex } from "../../src";
+import { Flex } from "@service-ui/react";
 
 import SampleTheme from "./SampleTheme";
 

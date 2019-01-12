@@ -1,18 +1,43 @@
 {
   "name": "@service-ui/mixins",
-  "description": "CSS property helpers & mixins",
+  "description": "CSS property helpers & mixins for service.ui",
   "version": "0.2.1",
-  "author": "Frédérique Mittelstaedt <npm@gfm.io> (https://www.gfm.io)",
+  "author": {
+    "name": "Frédérique Mittelstaedt",
+    "email": "npm@gfm.io",
+    "url": "https://www.gfm.io"
+  },
   "main": "dist/index",
   "module": "dist/index.mjs",
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "keywords": [
+    "service.ui",
+    "service-ui",
+    "serviceui",
+    "mixins",
+    "design",
+    "service.js",
+    "service-js",
+    "servicejs"
+  ],
+  "homepage": "https://github.com/servicejs/serviceui#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/servicejs/serviceui.git"
+  },
+  "bugs": "https://github.com/servicejs/serviceui/issues",
   "scripts": {
     "gulp": "gulp",
+    "prebuild": "npm-run-all clean:dist",
     "build": "gulp",
-    "publish": "cd ./dist && yarn publish --access public",
-    "size": "size-limit"
+    "publish": "cd ./dist && yarn publish",
+    "size": "size-limit",
+    "clean:dist": "rimraf ./dist",
+    "clean:node": "rimraf ./node",
+    "clean:ui-test": "rimraf ./ui-test/dist ./ui-test/.cache ./ui-test/node_modules",
+    "release": "npm-run-all build publish"
   },
   "devDependencies": {
     "@types/del": "^3.0.1",

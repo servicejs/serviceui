@@ -7,8 +7,8 @@
 /* @jsx jsx */
 
 import { jsx } from "@emotion/core";
+import { Image as Img, Picture as Pic } from "@service-ui/react";
 import { FunctionComponent } from "react";
-import { Image as Img, Picture as Pic } from "../../../src";
 
 /** Generates the URL to an Unsplash image */
 export const url = (id: string, width: number = 1350, quality: number = 80) =>

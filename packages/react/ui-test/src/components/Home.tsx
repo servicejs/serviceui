@@ -5,7 +5,7 @@ import { em, ThemedProps } from "@service-ui/mixins";
 import { withTheme } from "emotion-theming";
 import { RouteComponentProps, withRouter } from "react-router";
 
-import { Box, SafeArea, Text } from "../../../src";
+import { Box, SafeArea, Text } from "@service-ui/react";
 
 import SampleTheme from "../SampleTheme";
 import WithBg from "./WithBg";

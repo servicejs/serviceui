@@ -2,9 +2,9 @@
 
 import { jsx } from "@emotion/core";
 import { em, ThemedProps } from "@service-ui/mixins";
+import { Box, SafeArea } from "@service-ui/react";
 import { withTheme } from "emotion-theming";
 import React from "react";
-import { Box, SafeArea } from "../../../src";
 import SampleTheme from "../SampleTheme";
 
 const Header = withTheme(({ theme }: ThemedProps<SampleTheme>) => (

@@ -7,7 +7,7 @@
 import { jsx } from "@emotion/core";
 import React from "react";
 
-import { Fixed } from "../../../src";
+import { Fixed } from "@service-ui/react";
 
 class Stats extends React.Component {
   public render() {

@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/core";
 
 import { em } from "@service-ui/mixins";
-import { Box, SafeArea } from "../../../src";
+import { Box, SafeArea } from "@service-ui/react";
 
 const Footer = () => (
   /* Background & minimum padding */

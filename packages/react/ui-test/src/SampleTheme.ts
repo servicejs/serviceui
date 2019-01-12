@@ -336,7 +336,7 @@ class SampleTheme {
       default:
         return () => ({});
     }
-  }
+  };
 }
 
 export default SampleTheme;

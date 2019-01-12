@@ -8,10 +8,6 @@ const MathJax = require("react-mathjax").default;
 import MuiTextField from "@material-ui/core/TextField";
 
 import { em, ThemedProps } from "@service-ui/mixins";
-import { withTheme } from "emotion-theming";
-import { inject, observer } from "mobx-react";
-
-import { RouteComponentProps, withRouter } from "react-router";
 import {
   AspectRatio,
   Audio,
@@ -30,7 +26,10 @@ import {
   ResizeWrapper,
   SafeArea,
   Video,
-} from "../../../src";
+} from "@service-ui/react";
+import { withTheme } from "emotion-theming";
+import { inject, observer } from "mobx-react";
+import { RouteComponentProps, withRouter } from "react-router";
 import SampleTheme from "../SampleTheme";
 import debug from "../util";
 import ExampleChart from "./ExampleChart";
