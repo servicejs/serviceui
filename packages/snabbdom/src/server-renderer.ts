@@ -8,7 +8,7 @@ import toVNode from "snabbdom/tovnode";
 import { Element } from "./jsx";
 import { SnabbdomRenderer } from "./renderer";
 
-import toHTML = require("snabbdom-to-html");
+import toHTML from "snabbdom-to-html";
 
 /** Declarations */
 

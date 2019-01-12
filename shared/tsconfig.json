@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+
     // Output target & module type
     "target": "es5",
     "module": "commonjs",
@@ -73,5 +77,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveConstEnums": false
-  }
+  },
+  "include": ["src/**/*.ts"]
 }

@@ -1,4 +1,4 @@
-import { CommaSeparatedList } from "../../../src/util/css-value-helpers";
+import { CommaSeparatedList } from "@service-ui/mixins/util/css-value-helpers";
 
 export const aqua = {
   background: CommaSeparatedList(

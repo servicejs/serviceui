@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "lerna": "lerna",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "link": "npm-run-all link:mixins link:react link:snabbdom"
   },
   "devDependencies": {
     "lerna": "^3.10.5"

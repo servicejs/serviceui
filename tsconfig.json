@@ -1,1 +1,17 @@
-./shared/tsconfig.json
+{
+  "extends": "./shared/tsconfig.json",
+  "compilerOptions": {
+    "composite": true
+  },
+  "references": [
+    {
+      "path": "./packages/mixins/tsconfig.json"
+    },
+    {
+      "path": "./packages/react/tsconfig.json"
+    },
+    {
+      "path": "./packages/snabbdom/tsconfig.json"
+    }
+  ]
+}

@@ -24,7 +24,6 @@
   "devDependencies": {
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
-    "@service-ui/mixins": "^0.2.1",
     "@types/del": "^3.0.1",
     "@types/gulp": "^4.0.5",
     "@types/gulp-change": "^1.0.0",
@@ -55,7 +54,8 @@
     "vinyl": "^2.2.0"
   },
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.7.3"
+    "@emotion/is-prop-valid": "^0.7.3",
+    "@service-ui/mixins": "^0.2.1"
   },
   "size-limit": [
     {
@@ -66,7 +66,6 @@
   "peerDependencies": {
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
-    "@service-ui/mixins": "^0.2.1",
     "emotion-theming": "^10.0.6",
     "react": "^16.7.0"
   }
